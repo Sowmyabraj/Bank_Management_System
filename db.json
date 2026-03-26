@@ -1,0 +1,2586 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "type": "Current",
+      "balance": 57934,
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "type": "Savings",
+      "balance": 45430,
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "type": "Current",
+      "balance": 36700,
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "type": "Savings",
+      "balance": 81000,
+      "status": "Active"
+    },
+    {
+      "id": 5,
+      "type": "Current",
+      "balance": 16940,
+      "status": "Active"
+    },
+    {
+      "id": 6,
+      "type": "Savings",
+      "balance": 41574,
+      "status": "Active"
+    },
+    {
+      "id": 7,
+      "type": "Current",
+      "balance": 31416,
+      "status": "Active"
+    },
+    {
+      "id": 8,
+      "type": "Savings",
+      "balance": 34025,
+      "status": "Active"
+    },
+    {
+      "id": 9,
+      "type": "Current",
+      "balance": 18936,
+      "status": "Active"
+    },
+    {
+      "id": 10,
+      "type": "Savings",
+      "balance": 29459,
+      "status": "Active"
+    },
+    {
+      "id": 11,
+      "type": "Current",
+      "balance": 50667,
+      "status": "Active"
+    },
+    {
+      "id": 12,
+      "type": "Savings",
+      "balance": 11968,
+      "status": "Active"
+    },
+    {
+      "id": 13,
+      "type": "Current",
+      "balance": 49411,
+      "status": "Active"
+    },
+    {
+      "id": 14,
+      "type": "Savings",
+      "balance": 57724,
+      "status": "Active"
+    },
+    {
+      "id": 15,
+      "type": "Current",
+      "balance": 94453,
+      "status": "Active"
+    },
+    {
+      "id": 16,
+      "type": "Savings",
+      "balance": 19505,
+      "status": "Active"
+    },
+    {
+      "id": 17,
+      "type": "Current",
+      "balance": 81608,
+      "status": "Active"
+    },
+    {
+      "id": 18,
+      "type": "Savings",
+      "balance": 99426,
+      "status": "Active"
+    },
+    {
+      "id": 19,
+      "type": "Current",
+      "balance": 10045,
+      "status": "Active"
+    },
+    {
+      "id": 20,
+      "type": "Savings",
+      "balance": 85971,
+      "status": "Active"
+    },
+    {
+      "id": 21,
+      "type": "Current",
+      "balance": 6917,
+      "status": "Active"
+    },
+    {
+      "id": 22,
+      "type": "Savings",
+      "balance": 21968,
+      "status": "Active"
+    },
+    {
+      "id": 23,
+      "type": "Current",
+      "balance": 46249,
+      "status": "Active"
+    },
+    {
+      "id": 24,
+      "type": "Savings",
+      "balance": 15225,
+      "status": "Active"
+    },
+    {
+      "id": 25,
+      "type": "Current",
+      "balance": 27393,
+      "status": "Active"
+    },
+    {
+      "id": 26,
+      "type": "Savings",
+      "balance": 29940,
+      "status": "Active"
+    },
+    {
+      "id": 27,
+      "type": "Current",
+      "balance": 8458,
+      "status": "Active"
+    },
+    {
+      "id": 28,
+      "type": "Savings",
+      "balance": 52832,
+      "status": "Active"
+    },
+    {
+      "id": 29,
+      "type": "Current",
+      "balance": 21988,
+      "status": "Active"
+    },
+    {
+      "id": 30,
+      "type": "Savings",
+      "balance": 370,
+      "status": "Active"
+    }
+  ],
+  "transactions": [
+    {
+      "id": "1",
+      "accountId": 1,
+      "amount": 2722,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "2",
+      "accountId": 1,
+      "amount": 4622,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "3",
+      "accountId": 1,
+      "amount": 456,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Groceries"
+    },
+    {
+      "id": "4",
+      "accountId": 1,
+      "amount": 2481,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "5",
+      "accountId": 1,
+      "amount": 2400,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "6",
+      "accountId": 1,
+      "amount": 3296,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Gift"
+    },
+    {
+      "id": "7",
+      "accountId": 1,
+      "amount": 2299,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "8",
+      "accountId": 1,
+      "amount": 3705,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "9",
+      "accountId": 1,
+      "amount": 1795,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Gas Station"
+    },
+    {
+      "id": "10",
+      "accountId": 1,
+      "amount": 1957,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "11",
+      "accountId": 2,
+      "amount": 939,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "12",
+      "accountId": 2,
+      "amount": 6,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "13",
+      "accountId": 2,
+      "amount": 2259,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Gas Station"
+    },
+    {
+      "id": "14",
+      "accountId": 2,
+      "amount": 4285,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "15",
+      "accountId": 2,
+      "amount": 3692,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Restaurant"
+    },
+    {
+      "id": "16",
+      "accountId": 2,
+      "amount": 2413,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "17",
+      "accountId": 2,
+      "amount": 961,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "18",
+      "accountId": 2,
+      "amount": 3475,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "19",
+      "accountId": 2,
+      "amount": 3400,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "20",
+      "accountId": 2,
+      "amount": 4099,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "21",
+      "accountId": 3,
+      "amount": 1672,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "22",
+      "accountId": 3,
+      "amount": 1597,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "23",
+      "accountId": 3,
+      "amount": 3997,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "24",
+      "accountId": 3,
+      "amount": 1114,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "25",
+      "accountId": 3,
+      "amount": 1922,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Gas Station"
+    },
+    {
+      "id": "26",
+      "accountId": 3,
+      "amount": 4612,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "27",
+      "accountId": 3,
+      "amount": 2491,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "28",
+      "accountId": 3,
+      "amount": 4991,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "29",
+      "accountId": 3,
+      "amount": 1655,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "30",
+      "accountId": 3,
+      "amount": 4626,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Gift"
+    },
+    {
+      "id": "31",
+      "accountId": 4,
+      "amount": 3190,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "32",
+      "accountId": 4,
+      "amount": 1019,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "33",
+      "accountId": 4,
+      "amount": 2852,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "34",
+      "accountId": 4,
+      "amount": 299,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "35",
+      "accountId": 4,
+      "amount": 2178,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "36",
+      "accountId": 4,
+      "amount": 4361,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "37",
+      "accountId": 4,
+      "amount": 3443,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Restaurant"
+    },
+    {
+      "id": "38",
+      "accountId": 4,
+      "amount": 598,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "39",
+      "accountId": 4,
+      "amount": 4685,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Gas Station"
+    },
+    {
+      "id": "40",
+      "accountId": 4,
+      "amount": 4602,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "41",
+      "accountId": 5,
+      "amount": 3597,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "42",
+      "accountId": 5,
+      "amount": 4388,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "43",
+      "accountId": 5,
+      "amount": 3223,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "44",
+      "accountId": 5,
+      "amount": 1405,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "45",
+      "accountId": 5,
+      "amount": 757,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "46",
+      "accountId": 5,
+      "amount": 4638,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "47",
+      "accountId": 5,
+      "amount": 1371,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Groceries"
+    },
+    {
+      "id": "48",
+      "accountId": 5,
+      "amount": 1199,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "49",
+      "accountId": 5,
+      "amount": 3715,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "50",
+      "accountId": 5,
+      "amount": 4588,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "51",
+      "accountId": 6,
+      "amount": 726,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "52",
+      "accountId": 6,
+      "amount": 4054,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "53",
+      "accountId": 6,
+      "amount": 2292,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "54",
+      "accountId": 6,
+      "amount": 266,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "55",
+      "accountId": 6,
+      "amount": 1095,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Restaurant"
+    },
+    {
+      "id": "56",
+      "accountId": 6,
+      "amount": 1534,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Gift"
+    },
+    {
+      "id": "57",
+      "accountId": 6,
+      "amount": 2378,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "58",
+      "accountId": 6,
+      "amount": 3596,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "59",
+      "accountId": 6,
+      "amount": 2691,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "60",
+      "accountId": 6,
+      "amount": 235,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "61",
+      "accountId": 7,
+      "amount": 494,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Restaurant"
+    },
+    {
+      "id": "62",
+      "accountId": 7,
+      "amount": 1257,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "63",
+      "accountId": 7,
+      "amount": 4723,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "64",
+      "accountId": 7,
+      "amount": 2219,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "65",
+      "accountId": 7,
+      "amount": 4090,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "66",
+      "accountId": 7,
+      "amount": 2002,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "67",
+      "accountId": 7,
+      "amount": 2678,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "68",
+      "accountId": 7,
+      "amount": 1127,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "69",
+      "accountId": 7,
+      "amount": 426,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "70",
+      "accountId": 7,
+      "amount": 3831,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "71",
+      "accountId": 8,
+      "amount": 1813,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Gas Station"
+    },
+    {
+      "id": "72",
+      "accountId": 8,
+      "amount": 2259,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "73",
+      "accountId": 8,
+      "amount": 2106,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "74",
+      "accountId": 8,
+      "amount": 4614,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "75",
+      "accountId": 8,
+      "amount": 3946,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Gas Station"
+    },
+    {
+      "id": "76",
+      "accountId": 8,
+      "amount": 4169,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "77",
+      "accountId": 8,
+      "amount": 1394,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "78",
+      "accountId": 8,
+      "amount": 395,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "79",
+      "accountId": 8,
+      "amount": 2178,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "80",
+      "accountId": 8,
+      "amount": 4554,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Gift"
+    },
+    {
+      "id": "81",
+      "accountId": 9,
+      "amount": 1060,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "82",
+      "accountId": 9,
+      "amount": 2226,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Gift"
+    },
+    {
+      "id": "83",
+      "accountId": 9,
+      "amount": 648,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "84",
+      "accountId": 9,
+      "amount": 3275,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "85",
+      "accountId": 9,
+      "amount": 3498,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "86",
+      "accountId": 9,
+      "amount": 3124,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "87",
+      "accountId": 9,
+      "amount": 4529,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "88",
+      "accountId": 9,
+      "amount": 1353,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "89",
+      "accountId": 9,
+      "amount": 2868,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Gas Station"
+    },
+    {
+      "id": "90",
+      "accountId": 9,
+      "amount": 670,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "91",
+      "accountId": 10,
+      "amount": 2257,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "92",
+      "accountId": 10,
+      "amount": 3651,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "93",
+      "accountId": 10,
+      "amount": 3744,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "94",
+      "accountId": 10,
+      "amount": 2107,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "95",
+      "accountId": 10,
+      "amount": 547,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Restaurant"
+    },
+    {
+      "id": "96",
+      "accountId": 10,
+      "amount": 4512,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "97",
+      "accountId": 10,
+      "amount": 3501,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "98",
+      "accountId": 10,
+      "amount": 3309,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "99",
+      "accountId": 10,
+      "amount": 3227,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "100",
+      "accountId": 10,
+      "amount": 4283,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "101",
+      "accountId": 11,
+      "amount": 2574,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "102",
+      "accountId": 11,
+      "amount": 972,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "103",
+      "accountId": 11,
+      "amount": 3830,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Restaurant"
+    },
+    {
+      "id": "104",
+      "accountId": 11,
+      "amount": 4600,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "105",
+      "accountId": 11,
+      "amount": 3969,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Restaurant"
+    },
+    {
+      "id": "106",
+      "accountId": 11,
+      "amount": 715,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "107",
+      "accountId": 11,
+      "amount": 4834,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "108",
+      "accountId": 11,
+      "amount": 184,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "109",
+      "accountId": 11,
+      "amount": 4070,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "110",
+      "accountId": 11,
+      "amount": 2091,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "111",
+      "accountId": 12,
+      "amount": 4961,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "112",
+      "accountId": 12,
+      "amount": 1563,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "113",
+      "accountId": 12,
+      "amount": 2170,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "114",
+      "accountId": 12,
+      "amount": 3870,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "115",
+      "accountId": 12,
+      "amount": 4858,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "116",
+      "accountId": 12,
+      "amount": 1676,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "117",
+      "accountId": 12,
+      "amount": 3008,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "118",
+      "accountId": 12,
+      "amount": 3343,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "119",
+      "accountId": 12,
+      "amount": 4201,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "120",
+      "accountId": 12,
+      "amount": 4295,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "121",
+      "accountId": 13,
+      "amount": 198,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Gas Station"
+    },
+    {
+      "id": "122",
+      "accountId": 13,
+      "amount": 3549,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "123",
+      "accountId": 13,
+      "amount": 2803,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Gas Station"
+    },
+    {
+      "id": "124",
+      "accountId": 13,
+      "amount": 4645,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "125",
+      "accountId": 13,
+      "amount": 1361,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "126",
+      "accountId": 13,
+      "amount": 904,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "127",
+      "accountId": 13,
+      "amount": 4521,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "128",
+      "accountId": 13,
+      "amount": 3722,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "129",
+      "accountId": 13,
+      "amount": 2413,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "130",
+      "accountId": 13,
+      "amount": 65,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "131",
+      "accountId": 14,
+      "amount": 4840,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "132",
+      "accountId": 14,
+      "amount": 2571,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "133",
+      "accountId": 14,
+      "amount": 4728,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Restaurant"
+    },
+    {
+      "id": "134",
+      "accountId": 14,
+      "amount": 3040,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "135",
+      "accountId": 14,
+      "amount": 751,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "136",
+      "accountId": 14,
+      "amount": 2796,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "137",
+      "accountId": 14,
+      "amount": 232,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "138",
+      "accountId": 14,
+      "amount": 3792,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "139",
+      "accountId": 14,
+      "amount": 4209,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "140",
+      "accountId": 14,
+      "amount": 4163,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "141",
+      "accountId": 15,
+      "amount": 1182,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Restaurant"
+    },
+    {
+      "id": "142",
+      "accountId": 15,
+      "amount": 2503,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "143",
+      "accountId": 15,
+      "amount": 530,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "144",
+      "accountId": 15,
+      "amount": 1007,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "145",
+      "accountId": 15,
+      "amount": 14,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Restaurant"
+    },
+    {
+      "id": "146",
+      "accountId": 15,
+      "amount": 3653,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "147",
+      "accountId": 15,
+      "amount": 1800,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "148",
+      "accountId": 15,
+      "amount": 1525,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "149",
+      "accountId": 15,
+      "amount": 2498,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "150",
+      "accountId": 15,
+      "amount": 977,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Gift"
+    },
+    {
+      "id": "151",
+      "accountId": 16,
+      "amount": 1135,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Gas Station"
+    },
+    {
+      "id": "152",
+      "accountId": 16,
+      "amount": 1057,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "153",
+      "accountId": 16,
+      "amount": 1673,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "154",
+      "accountId": 16,
+      "amount": 2104,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "155",
+      "accountId": 16,
+      "amount": 3774,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Gas Station"
+    },
+    {
+      "id": "156",
+      "accountId": 16,
+      "amount": 1879,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "157",
+      "accountId": 16,
+      "amount": 4409,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "158",
+      "accountId": 16,
+      "amount": 3036,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "159",
+      "accountId": 16,
+      "amount": 3384,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Gas Station"
+    },
+    {
+      "id": "160",
+      "accountId": 16,
+      "amount": 1224,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "161",
+      "accountId": 17,
+      "amount": 158,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "162",
+      "accountId": 17,
+      "amount": 122,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "163",
+      "accountId": 17,
+      "amount": 2294,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "164",
+      "accountId": 17,
+      "amount": 2904,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "165",
+      "accountId": 17,
+      "amount": 1536,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "166",
+      "accountId": 17,
+      "amount": 3231,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "167",
+      "accountId": 17,
+      "amount": 1501,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Restaurant"
+    },
+    {
+      "id": "168",
+      "accountId": 17,
+      "amount": 2711,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "169",
+      "accountId": 17,
+      "amount": 1677,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Restaurant"
+    },
+    {
+      "id": "170",
+      "accountId": 17,
+      "amount": 1168,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "171",
+      "accountId": 18,
+      "amount": 4855,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "172",
+      "accountId": 18,
+      "amount": 3703,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Gift"
+    },
+    {
+      "id": "173",
+      "accountId": 18,
+      "amount": 856,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "174",
+      "accountId": 18,
+      "amount": 655,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "175",
+      "accountId": 18,
+      "amount": 2662,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Gas Station"
+    },
+    {
+      "id": "176",
+      "accountId": 18,
+      "amount": 1932,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "177",
+      "accountId": 18,
+      "amount": 1500,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "178",
+      "accountId": 18,
+      "amount": 703,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "179",
+      "accountId": 18,
+      "amount": 2161,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Restaurant"
+    },
+    {
+      "id": "180",
+      "accountId": 18,
+      "amount": 4033,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "181",
+      "accountId": 19,
+      "amount": 1541,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "182",
+      "accountId": 19,
+      "amount": 2187,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "183",
+      "accountId": 19,
+      "amount": 2008,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "184",
+      "accountId": 19,
+      "amount": 1921,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "185",
+      "accountId": 19,
+      "amount": 3731,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "186",
+      "accountId": 19,
+      "amount": 4042,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "187",
+      "accountId": 19,
+      "amount": 3051,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "188",
+      "accountId": 19,
+      "amount": 85,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "189",
+      "accountId": 19,
+      "amount": 4180,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "190",
+      "accountId": 19,
+      "amount": 556,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "191",
+      "accountId": 20,
+      "amount": 2362,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Gas Station"
+    },
+    {
+      "id": "192",
+      "accountId": 20,
+      "amount": 3208,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "193",
+      "accountId": 20,
+      "amount": 4800,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Groceries"
+    },
+    {
+      "id": "194",
+      "accountId": 20,
+      "amount": 4215,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "195",
+      "accountId": 20,
+      "amount": 4277,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "196",
+      "accountId": 20,
+      "amount": 1519,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "197",
+      "accountId": 20,
+      "amount": 4959,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "198",
+      "accountId": 20,
+      "amount": 3763,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "199",
+      "accountId": 20,
+      "amount": 369,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "200",
+      "accountId": 20,
+      "amount": 2358,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "201",
+      "accountId": 21,
+      "amount": 387,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "202",
+      "accountId": 21,
+      "amount": 1274,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "203",
+      "accountId": 21,
+      "amount": 1977,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Gas Station"
+    },
+    {
+      "id": "204",
+      "accountId": 21,
+      "amount": 2647,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "205",
+      "accountId": 21,
+      "amount": 3949,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "206",
+      "accountId": 21,
+      "amount": 4614,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "207",
+      "accountId": 21,
+      "amount": 2707,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "208",
+      "accountId": 21,
+      "amount": 415,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "209",
+      "accountId": 21,
+      "amount": 2437,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "210",
+      "accountId": 21,
+      "amount": 4082,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "211",
+      "accountId": 22,
+      "amount": 1761,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Gas Station"
+    },
+    {
+      "id": "212",
+      "accountId": 22,
+      "amount": 1325,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "213",
+      "accountId": 22,
+      "amount": 2629,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Restaurant"
+    },
+    {
+      "id": "214",
+      "accountId": 22,
+      "amount": 4509,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "215",
+      "accountId": 22,
+      "amount": 3142,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "216",
+      "accountId": 22,
+      "amount": 1332,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "217",
+      "accountId": 22,
+      "amount": 4833,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Restaurant"
+    },
+    {
+      "id": "218",
+      "accountId": 22,
+      "amount": 2885,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "219",
+      "accountId": 22,
+      "amount": 3013,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Gas Station"
+    },
+    {
+      "id": "220",
+      "accountId": 22,
+      "amount": 3728,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "221",
+      "accountId": 23,
+      "amount": 1024,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Restaurant"
+    },
+    {
+      "id": "222",
+      "accountId": 23,
+      "amount": 1859,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "223",
+      "accountId": 23,
+      "amount": 3716,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "224",
+      "accountId": 23,
+      "amount": 4180,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "225",
+      "accountId": 23,
+      "amount": 1194,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Gas Station"
+    },
+    {
+      "id": "226",
+      "accountId": 23,
+      "amount": 4732,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "227",
+      "accountId": 23,
+      "amount": 373,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "228",
+      "accountId": 23,
+      "amount": 1649,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "229",
+      "accountId": 23,
+      "amount": 1087,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "230",
+      "accountId": 23,
+      "amount": 4364,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "231",
+      "accountId": 24,
+      "amount": 1431,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "232",
+      "accountId": 24,
+      "amount": 2043,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "233",
+      "accountId": 24,
+      "amount": 1284,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "234",
+      "accountId": 24,
+      "amount": 2346,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "235",
+      "accountId": 24,
+      "amount": 782,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Groceries"
+    },
+    {
+      "id": "236",
+      "accountId": 24,
+      "amount": 4114,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Gift"
+    },
+    {
+      "id": "237",
+      "accountId": 24,
+      "amount": 310,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "238",
+      "accountId": 24,
+      "amount": 2785,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "239",
+      "accountId": 24,
+      "amount": 3412,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "240",
+      "accountId": 24,
+      "amount": 860,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "241",
+      "accountId": 25,
+      "amount": 1488,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Groceries"
+    },
+    {
+      "id": "242",
+      "accountId": 25,
+      "amount": 2425,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Freelance Payment"
+    },
+    {
+      "id": "243",
+      "accountId": 25,
+      "amount": 3478,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Gas Station"
+    },
+    {
+      "id": "244",
+      "accountId": 25,
+      "amount": 1078,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "245",
+      "accountId": 25,
+      "amount": 2818,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "246",
+      "accountId": 25,
+      "amount": 4841,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "247",
+      "accountId": 25,
+      "amount": 172,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Groceries"
+    },
+    {
+      "id": "248",
+      "accountId": 25,
+      "amount": 349,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Gift"
+    },
+    {
+      "id": "249",
+      "accountId": 25,
+      "amount": 2576,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "250",
+      "accountId": 25,
+      "amount": 1105,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "251",
+      "accountId": 26,
+      "amount": 4474,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "252",
+      "accountId": 26,
+      "amount": 1822,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "253",
+      "accountId": 26,
+      "amount": 1212,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "254",
+      "accountId": 26,
+      "amount": 3242,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "255",
+      "accountId": 26,
+      "amount": 3494,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Gas Station"
+    },
+    {
+      "id": "256",
+      "accountId": 26,
+      "amount": 1770,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "257",
+      "accountId": 26,
+      "amount": 2784,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Gas Station"
+    },
+    {
+      "id": "258",
+      "accountId": 26,
+      "amount": 2135,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "259",
+      "accountId": 26,
+      "amount": 3422,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "260",
+      "accountId": 26,
+      "amount": 1095,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "261",
+      "accountId": 27,
+      "amount": 3221,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "262",
+      "accountId": 27,
+      "amount": 1213,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Gift"
+    },
+    {
+      "id": "263",
+      "accountId": 27,
+      "amount": 2493,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "264",
+      "accountId": 27,
+      "amount": 4050,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "265",
+      "accountId": 27,
+      "amount": 1431,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Groceries"
+    },
+    {
+      "id": "266",
+      "accountId": 27,
+      "amount": 2944,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "267",
+      "accountId": 27,
+      "amount": 345,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "268",
+      "accountId": 27,
+      "amount": 3706,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "269",
+      "accountId": 27,
+      "amount": 498,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Netflix Subscription"
+    },
+    {
+      "id": "270",
+      "accountId": 27,
+      "amount": 1297,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Gift"
+    },
+    {
+      "id": "271",
+      "accountId": 28,
+      "amount": 1838,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "272",
+      "accountId": 28,
+      "amount": 1669,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "273",
+      "accountId": 28,
+      "amount": 3581,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Groceries"
+    },
+    {
+      "id": "274",
+      "accountId": 28,
+      "amount": 410,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "275",
+      "accountId": 28,
+      "amount": 2445,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Groceries"
+    },
+    {
+      "id": "276",
+      "accountId": 28,
+      "amount": 4745,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "277",
+      "accountId": 28,
+      "amount": 1650,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Restaurant"
+    },
+    {
+      "id": "278",
+      "accountId": 28,
+      "amount": 2135,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Tax Refund"
+    },
+    {
+      "id": "279",
+      "accountId": 28,
+      "amount": 4361,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "280",
+      "accountId": 28,
+      "amount": 2703,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Gift"
+    },
+    {
+      "id": "281",
+      "accountId": 29,
+      "amount": 1983,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Electric Bill"
+    },
+    {
+      "id": "282",
+      "accountId": 29,
+      "amount": 4936,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "283",
+      "accountId": 29,
+      "amount": 59,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Groceries"
+    },
+    {
+      "id": "284",
+      "accountId": 29,
+      "amount": 3347,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Gift"
+    },
+    {
+      "id": "285",
+      "accountId": 29,
+      "amount": 2433,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Groceries"
+    },
+    {
+      "id": "286",
+      "accountId": 29,
+      "amount": 4620,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Salary Credit"
+    },
+    {
+      "id": "287",
+      "accountId": 29,
+      "amount": 4490,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Amazon Purchase"
+    },
+    {
+      "id": "288",
+      "accountId": 29,
+      "amount": 16,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "289",
+      "accountId": 29,
+      "amount": 1891,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Gas Station"
+    },
+    {
+      "id": "290",
+      "accountId": 29,
+      "amount": 1871,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "291",
+      "accountId": 30,
+      "amount": 4661,
+      "type": "Debit",
+      "date": "2025-03-02",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "292",
+      "accountId": 30,
+      "amount": 3943,
+      "type": "Credit",
+      "date": "2025-03-03",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "293",
+      "accountId": 30,
+      "amount": 2711,
+      "type": "Debit",
+      "date": "2025-03-04",
+      "description": "Restaurant"
+    },
+    {
+      "id": "294",
+      "accountId": 30,
+      "amount": 2900,
+      "type": "Credit",
+      "date": "2025-03-05",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "295",
+      "accountId": 30,
+      "amount": 1793,
+      "type": "Debit",
+      "date": "2025-03-06",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "296",
+      "accountId": 30,
+      "amount": 3579,
+      "type": "Credit",
+      "date": "2025-03-07",
+      "description": "Cash Deposit"
+    },
+    {
+      "id": "297",
+      "accountId": 30,
+      "amount": 3032,
+      "type": "Debit",
+      "date": "2025-03-08",
+      "description": "Rent Payment"
+    },
+    {
+      "id": "298",
+      "accountId": 30,
+      "amount": 21,
+      "type": "Credit",
+      "date": "2025-03-09",
+      "description": "Dividend Income"
+    },
+    {
+      "id": "299",
+      "accountId": 30,
+      "amount": 3497,
+      "type": "Debit",
+      "date": "2025-03-10",
+      "description": "Groceries"
+    },
+    {
+      "id": "300",
+      "accountId": 30,
+      "amount": 3973,
+      "type": "Credit",
+      "date": "2025-03-11",
+      "description": "Gift"
+    }
+  ]
+}

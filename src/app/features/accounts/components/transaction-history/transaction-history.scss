@@ -1,0 +1,141 @@
+/* 🔹 Page */
+:host {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  background: linear-gradient(135deg, #eef2f7, #f8fbff);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 🔹 Container */
+.container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* 🔹 Title */
+.title {
+  text-align: center;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+/* 🔹 Filter Bar */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+/* 🔹 Inputs */
+select,
+input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* 🔹 Button */
+.primary-btn {
+  background: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #0d47a1;
+}
+
+/* 🔹 Loading */
+.loading {
+  text-align: center;
+  color: #1a73e8;
+}
+
+/* 🔹 Empty */
+.empty {
+  text-align: center;
+  color: #999;
+}
+
+/* 🔹 Transaction Grid */
+.transaction-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* 🔹 Card */
+.transaction-card {
+  width: 230px;
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+  border-left: 4px solid #1a73e8;
+}
+
+.transaction-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 🔹 Text */
+.tx-type {
+  font-weight: bold;
+  color: #555;
+}
+
+.tx-amount {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b5e20;
+}
+
+.tx-desc {
+  font-size: 13px;
+  color: #777;
+}
+
+/* 🔹 Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* 🔹 Pagination Buttons */
+.pagination button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #1a73e8;
+  background: white;
+  color: #1a73e8;
+  cursor: pointer;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: #1a73e8;
+  color: white;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 🔹 Total */
+.total {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 12px;
+  color: gray;
+}

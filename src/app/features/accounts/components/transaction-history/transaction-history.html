@@ -1,0 +1,54 @@
+<div class="container">
+
+  <h2 class="title">📊 Transaction History</h2>
+
+  <!-- 🔹 Filters -->
+  <div class="filter-bar">
+    <select [(ngModel)]="type">
+      <option value="">All Types</option>
+      <option value="Credit">Credit</option>
+      <option value="Debit">Debit</option>
+    </select>
+
+    <input type="number" [(ngModel)]="minAmount" placeholder="Min ₹">
+    <input type="number" [(ngModel)]="maxAmount" placeholder="Max ₹">
+
+    <button class="primary-btn" (click)="applyFilters()">
+      Apply Filters
+    </button>
+  </div>
+
+  <!-- 🔹 Loading -->
+  <div *ngIf="loading" class="loading">
+    Loading...
+  </div>
+
+  <!-- 🔹 Empty -->
+  <div *ngIf="!loading && transactions.length === 0" class="empty">
+    No records found.
+  </div>
+
+  <!-- 🔹 Transactions -->
+  <div class="transaction-container">
+    <div class="transaction-card" *ngFor="let t of transactions">
+      <div class="tx-type">{{ t.type }}</div>
+      <div class="tx-amount">₹ {{ t.amount }}</div>
+      <div class="tx-desc">{{ t.description }}</div>
+    </div>
+  </div>
+
+  <!-- 🔹 Pagination -->
+  <div class="pagination">
+    <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
+
+    <span>Page {{ page }} of {{ totalPages }}</span>
+
+    <button (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
+  </div>
+
+  <!-- 🔹 Total -->
+  <div class="total">
+    Total Records Found: {{ allTransactions.length }}
+  </div>
+
+</div>

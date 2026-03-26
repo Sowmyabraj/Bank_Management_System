@@ -1,0 +1,42 @@
+<h2 class="title">🏦 Welcome to Your Dashboard</h2>
+
+<p class="subtitle">
+  Manage your accounts, track transactions, and monitor your balance easily.
+</p>
+
+<div class="card-container">
+
+  <div class="card" [style.backgroundColor]="showDetails ? '#e6f7ff' : '#ffffff'">
+    <div class="label">Total Accounts</div>
+    <div class="value">{{ showDetails ? totalAccounts : '---' }}</div>
+  </div>
+
+  <div class="card" [style.backgroundColor]="showDetails ? '#e6f7ff' : '#ffffff'">
+    <div class="label">Total Balance</div>
+    <div class="value">
+      ₹ {{ showDetails ? (totalBalance | number:'1.2-2') : 'XXXX.XX' }}
+    </div>
+  </div>
+
+  <div class="card" [style.backgroundColor]="showDetails ? '#e6f7ff' : '#ffffff'">
+    <div class="label">Total Transactions</div>
+    <div class="value">{{ showDetails ? totalTransactions : '---' }}</div>
+  </div>
+
+</div>
+
+<div class="action-section">
+  <button class="primary-btn" (click)="toggleDetails()">
+    {{ showDetails ? 'Hide Details' : 'View Details' }}
+  </button>
+</div>
+
+<div class="nav-section">
+  <button class="secondary-btn" [routerLink]="['/accounts']">
+    View Accounts
+  </button>
+
+  <button class="secondary-btn" [routerLink]="['/accounts/transactions']">
+    View Transactions
+  </button>
+</div>

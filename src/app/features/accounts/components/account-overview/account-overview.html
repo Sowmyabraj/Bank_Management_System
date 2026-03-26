@@ -1,0 +1,26 @@
+<h2 class="title">💳 Your Accounts</h2>
+
+<p class="subtitle">
+  View and manage all your bank accounts in one place.
+</p>
+
+<!-- 🔹 Loading -->
+<div *ngIf="loading" class="loading">
+  Loading accounts...
+</div>
+
+<!-- 🔹 Data -->
+<div *ngIf="!loading">
+
+  <div *ngIf="accounts.length === 0" class="empty">
+    No accounts found
+  </div>
+
+  <div class="account-container">
+    <div class="account-card" *ngFor="let acc of accounts">
+      <div class="acc-type">{{ acc.type }}</div>
+      <div class="acc-balance">₹ {{ acc.balance }}</div>
+    </div>
+  </div>
+
+</div>
