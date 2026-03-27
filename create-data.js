@@ -3,43 +3,128 @@ const fs = require('fs');
 const accounts = [];
 const transactions = [];
 
-// Description Pools
-const debitDescriptions = ['Groceries', 'Electric Bill', 'Amazon Purchase', 'Rent Payment', 'Netflix Subscription', 'Gas Station', 'Restaurant'];
-const creditDescriptions = ['Salary Credit', 'Freelance Payment', 'Cash Deposit', 'Tax Refund', 'Dividend Income', 'Gift'];
+// 🔹 Single Customer
+const customer = {
+  customerId: 1,
+  name: 'Sowmya B',
+  email: 'sowmya@bank.com',
+  phone: '9876543210'
+};
 
-for (let i = 1; i <= 30; i++) {
-  accounts.push({
+// 🔹 Data Pools
+const branches = ['Chennai', 'Hyderabad', 'Bangalore', 'Mumbai', 'Delhi'];
+const accountTypes = ['Savings', 'Current', 'Salary'];
+
+const debitDescriptions = [
+  'ATM Withdrawal',
+  'UPI Payment',
+  'Grocery Store',
+  'Electricity Bill',
+  'Restaurant',
+  'Online Shopping',
+  'Fuel Payment'
+];
+
+const creditDescriptions = [
+  'Salary Credit',
+  'Cash Deposit',
+  'Refund',
+  'Interest Credit',
+  'Dividend',
+  'Transfer from Friend'
+];
+
+const modes = ['UPI', 'NEFT', 'IMPS', 'ATM', 'NetBanking'];
+
+// 🔹 Helpers
+function random(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function randomAmount(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function pad(n) {
+  return n.toString().padStart(2, '0');
+}
+
+// 🔹 Create 3 Accounts (Savings, Current, Salary)
+for (let i = 1; i <= 3; i++) {
+  const accountNumber = (1000000000 + i).toString();
+  const type = accountTypes[i - 1];
+
+  const balance =
+    type === 'Salary'
+      ? randomAmount(80000, 300000)
+      : randomAmount(50000, 200000);
+
+  const account = {
     id: i,
-    type: i % 2 === 0 ? 'Savings' : 'Current',
-    balance: Math.floor(Math.random() * 100000),
-    status: 'Active'
-  });
+    customerId: customer.customerId,
+    accountNumber,
+    customerName: customer.name,
+    email: customer.email,
+    phone: customer.phone,
+    type,
+    balance,
+    currency: 'INR',
+    status: 'Active',
+    branch: random(branches),
+    ifsc: `SBIN000${1000 + i}`,
+    createdDate: `2025-${pad(randomAmount(1, 12))}-01`
+  };
 
-  for (let j = 1; j <= 10; j++) {
-    const isCredit = j % 2 === 0;
-    const type = isCredit ? 'Credit' : 'Debit';
-    
-    // 🔹 Pick a random description based on the type
-    const pool = isCredit ? creditDescriptions : debitDescriptions;
-    const description = pool[Math.floor(Math.random() * pool.length)];
+  accounts.push(account);
 
-    // 🔹 Fix: Ensure the day is 2-digits (01, 02...) for proper filtering
-    const day = ((j % 28) + 1).toString().padStart(2, '0');
+  let runningBalance = balance;
+
+  // 🔹 200 Transactions per account
+  for (let j = 1; j <= 200; j++) {
+    const isCredit = Math.random() > 0.5;
+    const amount = randomAmount(100, 10000);
+
+    const txnType = isCredit ? 'Credit' : 'Debit';
+
+    let description;
+
+    // 🔹 Salary-specific logic
+    if (type === 'Salary' && isCredit && Math.random() > 0.7) {
+      description = 'Monthly Salary Credit';
+    } else {
+      description = isCredit
+        ? random(creditDescriptions)
+        : random(debitDescriptions);
+    }
+
+    // Update balance
+    if (txnType === 'Credit') {
+      runningBalance += amount;
+    } else {
+      runningBalance -= amount;
+    }
+
+    const day = pad(randomAmount(1, 28));
 
     transactions.push({
-      id: String((i - 1) * 10 + j),
+      id: `TXN${i}${j}${Date.now().toString().slice(-4)}`,
       accountId: i,
-      amount: Math.floor(Math.random() * 5000),
-      type: type,
-      date: `2025-03-${day}`,
-      description: description // 👈 Now dynamic!
+      accountNumber,
+      type: txnType,
+      amount,
+      balanceAfter: runningBalance,
+      date: `2026-03-${day}`,
+      description,
+      mode: random(modes),
+      status: 'Success'
     });
   }
 }
 
+// 🔹 Write file
 fs.writeFileSync(
   'db.json',
-  JSON.stringify({ accounts, transactions }, null, 2)
+  JSON.stringify({ customer, accounts, transactions }, null, 2)
 );
 
-console.log("✅ db.json updated with realistic descriptions and standard dates.");
+console.log('✅ db.json created: 1 customer, 3 accounts, 200 transactions each');

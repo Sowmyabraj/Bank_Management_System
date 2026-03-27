@@ -1,6 +1,5 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Account } from '../Models/account.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,16 +11,27 @@ export class AccountsService {
 
   constructor(private http: HttpClient) {}
 
-  getAccounts() {
-    return this.http.get<Account[]>(`${this.baseUrl}/accounts`);
+  // ✅ Get all accounts
+  getAccounts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/accounts`);
   }
 
-  getAccount(id: number) {
-    return this.http.get<Account>(`${this.baseUrl}/accounts/${id}`);
+  // ✅ Get single account
+  getAccount(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/accounts/${id}`);
   }
 
-getAllTransactions(params?: any): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/transactions`, { params: params || {} });
-  }
+  // ✅ Get all transactions
+ getAllTransactions(params?: any): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/transactions`, {
+    params: params || {}
+  });
+}
 
+  // ✅ Get transactions by account
+  getTransactionsByAccount(accountId: number): Observable<any[]> {
+    return this.http.get<any[]>(
+      `${this.baseUrl}/transactions?accountId=${accountId}`
+    );
+  }
 }

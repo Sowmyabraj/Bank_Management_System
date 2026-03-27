@@ -1,8 +1,11 @@
+
+<!--
 <div class="container">
 
   <h2 class="title">📊 Transaction History</h2>
 
-  <!-- 🔹 Filters -->
+  <button class="back-btn" (click)="goBack()">⬅ Back to Dashboard</button>
+  🔹 Filters 
   <div class="filter-bar">
     <select [(ngModel)]="type">
       <option value="">All Types</option>
@@ -13,22 +16,26 @@
     <input type="number" [(ngModel)]="minAmount" placeholder="Min ₹">
     <input type="number" [(ngModel)]="maxAmount" placeholder="Max ₹">
 
+    ✅ NEW DATE FILTER 
+  <input type="date" [(ngModel)]="fromDate">
+  <input type="date" [(ngModel)]="toDate">
+
     <button class="primary-btn" (click)="applyFilters()">
       Apply Filters
     </button>
   </div>
 
-  <!-- 🔹 Loading -->
+  🔹 Loading 
   <div *ngIf="loading" class="loading">
     Loading...
   </div>
 
-  <!-- 🔹 Empty -->
+  🔹 Empty 
   <div *ngIf="!loading && transactions.length === 0" class="empty">
     No records found.
   </div>
 
-  <!-- 🔹 Transactions -->
+   🔹 Transactions 
   <div class="transaction-container">
     <div class="transaction-card" *ngFor="let t of transactions">
       <div class="tx-type">{{ t.type }}</div>
@@ -37,7 +44,7 @@
     </div>
   </div>
 
-  <!-- 🔹 Pagination -->
+  🔹 Pagination 
   <div class="pagination">
     <button (click)="prevPage()" [disabled]="page === 1">Previous</button>
 
@@ -46,9 +53,9 @@
     <button (click)="nextPage()" [disabled]="page >= totalPages">Next</button>
   </div>
 
-  <!-- 🔹 Total -->
+  🔹 Total 
   <div class="total">
     Total Records Found: {{ allTransactions.length }}
   </div>
 
-</div>
+</div> -->

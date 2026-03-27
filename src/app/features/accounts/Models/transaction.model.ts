@@ -1,8 +1,12 @@
 export interface Transaction {
-  id: number;
+  id: string;
   accountId: number;
+  accountNumber: string;
+  type: 'Credit' | 'Debit';
   amount: number;
-  type: string;
+  balanceAfter: number;
   date: string;
   description: string;
+  mode: string;
+  status: string;
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccountsService } from '../accounts/services/accounts';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,20 +22,20 @@ export class Dashboard implements OnInit {
 
   ngOnInit(): void {
 
-    this.service.getAccounts().subscribe(data => {
-      this.totalAccounts = data.length;
+    // ✅ Accounts
+    this.service.getAccounts().subscribe(accounts => {
+      this.totalAccounts = accounts.length;
 
-      this.totalBalance = data.reduce(
-        (sum, acc) => sum + Number(acc.balance),
+      this.totalBalance = accounts.reduce(
+        (sum, acc) => sum + Number(acc.balance || 0),
         0
       );
     });
 
-    this.service.getAllTransactions().subscribe((response: any) => {
-  // Use the same smart check here
-  const list = (response && response.data) ? response.data : response;
-  this.totalTransactions = list.length;
-});
+    // ✅ Transactions (clean handling)
+    this.service.getAllTransactions().subscribe(transactions => {
+      this.totalTransactions = transactions.length;
+    });
   }
 
   toggleDetails() {

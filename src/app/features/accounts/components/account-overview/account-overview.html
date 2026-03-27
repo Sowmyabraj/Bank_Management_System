@@ -1,26 +1,65 @@
-<h2 class="title">💳 Your Accounts</h2>
+<!-- 🔹 Back Button -->
+<button class="back-btn" (click)="goBack()">⬅ Back to Dashboard</button>
 
+<h2 class="title">💳 Your Accounts</h2>
 <p class="subtitle">
-  View and manage all your bank accounts in one place.
+  View and manage your accounts
 </p>
 
 <!-- 🔹 Loading -->
-<div *ngIf="loading" class="loading">
-  Loading accounts...
-</div>
+<div *ngIf="loading">Loading accounts...</div>
 
 <!-- 🔹 Data -->
 <div *ngIf="!loading">
 
-  <div *ngIf="accounts.length === 0" class="empty">
+  <!-- 🔹 Empty State -->
+  <div *ngIf="paginatedAccounts.length === 0">
     No accounts found
   </div>
 
+  <!-- 🔹 Account Cards -->
   <div class="account-container">
-    <div class="account-card" *ngFor="let acc of accounts">
-      <div class="acc-type">{{ acc.type }}</div>
-      <div class="acc-balance">₹ {{ acc.balance }}</div>
+
+    <div 
+      class="account-card"
+      *ngFor="let acc of paginatedAccounts"
+      (click)="openAccount(acc)"
+    >
+
+      <!-- 🔹 Top Row -->
+      <div class="acc-header">
+        <div class="acc-type">
+          💼 {{ acc.type }} Account
+        </div>
+
+      </div>
+      <!-- 🔹 Customer Name -->
+      <div class="acc-name">
+        {{ acc.customerName }}
+      </div>
+
+      <!-- 🔹 Branch -->
+      <div class="acc-branch">
+        🏦 {{ acc.branch }} Branch
+      </div>
+
     </div>
+
+  </div>
+
+  <!-- 🔹 Pagination -->
+  <div class="pagination">
+
+    <button (click)="prevPage()" [disabled]="currentPage === 1">
+      ⬅ Prev
+    </button>
+
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+      Next ➡
+    </button>
+
   </div>
 
 </div>
