@@ -1,12 +1,27 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './features/dashboard/dashboard';
-//import { Statements } from './features/accounts/components/statement/statement';
-//import { TransactionHistory } from './features/accounts/components/transaction-history/transaction-history';
-
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
 
-   { path: '', component: Dashboard }, // default
+  {
+    path: '',
+    loadComponent: () =>
+      import('./features/landing/landing').then(m => m.Landing)
+  },
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./features/login/login').then(m => m.Login)
+  },
+
+  {
+    path: 'dashboard',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/dashboard/dashboard').then(m => m.Dashboard),
+
+    children: [
 
   {
     path: 'accounts',
@@ -14,14 +29,23 @@ export const routes: Routes = [
       import('./features/accounts/accounts-routing-module')
         .then(m => m.ACCOUNTS_ROUTES)
   },
-//   {
-//   path: 'transactions/:id',
-//   component: TransactionHistory
-// },
-// {
-//   path: 'statement/:id',
-//   component: Statements
-// },
+
+  {
+    path: 'transactions',
+    loadComponent: () =>
+      import('./features/accounts/components/transaction-history/transaction-history')
+        .then(m => m.TransactionHistory)
+  },
+
+  {
+    path: 'statements',
+    loadComponent: () =>
+      import('./features/accounts/components/statement/statement')
+        .then(m => m.Statements)
+  }
+
+]
+  },
 
   { path: '**', redirectTo: '' }
 ];

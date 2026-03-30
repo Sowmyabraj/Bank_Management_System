@@ -1,5 +1,3 @@
-<!-- 🔹 Back Button -->
-<button class="back-btn" (click)="goBack()">⬅ Back to Dashboard</button>
 
 <h2 class="title">💳 Your Accounts</h2>
 <p class="subtitle">
@@ -37,6 +35,10 @@
       <div class="acc-name">
         {{ acc.customerName }}
       </div>
+
+      <div class="acc-balance">
+  ₹ {{ acc.balance | number:'1.2-2' }}
+</div>
 
       <!-- 🔹 Branch -->
       <div class="acc-branch">

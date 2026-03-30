@@ -1,80 +1,117 @@
-/* 🔹 Page Layout */
-:host {
+/* 🔹 Page Wrapper */
+.body {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #eef2f7, #f8fbff);
-  font-family: 'Segoe UI', sans-serif;
-  text-align: center;
+  align-items: center;   /* 🔥 CENTER EVERYTHING */
 }
 
 /* 🔹 Title */
 .title {
-  color: #0d47a1;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  color: #2a4d69;
+  text-align: center;
 }
 
 /* 🔹 Subtitle */
 .subtitle {
+  font-size: 14px;
   color: #666;
-  margin-bottom: 30px;
-  max-width: 600px;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-/* 🔹 Loading */
-.loading {
-  font-size: 18px;
-  color: #1a73e8;
-  margin-top: 20px;
-}
-
-/* 🔹 Empty State */
-.empty {
-  color: #999;
-  margin-top: 20px;
-}
-
-/* 🔹 Account Container */
+/* 🔹 Container (KEY FIX) */
 .account-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 900px;
+  justify-content: center;   /* center horizontally */
+  align-items: stretch;
+  gap: 25px;
+
+  flex-wrap: nowrap;         /* 🔥 IMPORTANT: no wrapping */
 }
 
-/* 🔹 Account Card */
+/* 🔹 Card */
 .account-card {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  width: 220px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: 0.3s;
-  border-top: 4px solid #1a73e8;
-}
+  width: 260px;              /* fixed width */
+  min-width: 260px;          /* prevents shrinking */
 
+  padding: 18px;
+  background: #e3ebf3;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
 /* 🔹 Hover */
 .account-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
-/* 🔹 Account Type */
-.acc-type {
-  font-size: 16px;
-  color: #555;
+/* 🔹 Header */
+.acc-header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
+}
+
+/* 🔹 Type */
+.acc-type {
+  font-size: 14px;
+  font-weight: 500;
+  color: #2a4d69;
+}
+
+/* 🔹 Name */
+.acc-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2933;
 }
 
 /* 🔹 Balance */
 .acc-balance {
-  font-size: 22px;
-  font-weight: bold;
-  color: #1b5e20;
+  font-weight: 600;
+  color: #2a4d69;
+  margin-bottom: 6px;
+}
+
+/* 🔹 Branch */
+.acc-branch {
+  font-size: 13px;
+  color: #555;
+}
+
+/* 🔹 Pagination (CENTER FIX) */
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  /* 🔥 CENTER */
+  gap: 15px;
+}
+
+/* 🔹 Buttons */
+.pagination button {
+  padding: 6px 14px;
+  border: none;
+  background: #2a4d69;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  background: #9aa5b1;
+  cursor: not-allowed;
+}
+
+/* 🔹 Page text */
+.pagination span {
+  font-size: 14px;
+  color: #444;
 }

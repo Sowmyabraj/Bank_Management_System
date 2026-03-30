@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Account } from '../Models/account.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,13 @@ export class AccountsService {
   getTransactionsByAccount(accountId: number): Observable<any[]> {
     return this.http.get<any[]>(
       `${this.baseUrl}/transactions?accountId=${accountId}`
+    );
+  }
+
+  calculateTotalBalance(accounts: Account[]): number {
+    return accounts.reduce(
+      (sum, acc) => sum + Number(acc.balance || 0),
+      0
     );
   }
 }

@@ -1,112 +1,142 @@
-// import { Component } from "@angular/core";
-// import { OnInit } from "@angular/core";
-// import { ChangeDetectorRef } from "@angular/core";
-// import { AccountsService } from '../../services/accounts';
-// import { CommonModule } from "@angular/common";
-// import { FormsModule } from "@angular/forms";
-// import { Router } from "@angular/router";
-// import { ActivatedRoute } from "@angular/router";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Router, ActivatedRoute } from "@angular/router";
+import { AccountsService } from '../../services/accounts';
 
-// @Component({
+@Component({
+  selector: 'app-transaction-history',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
+  templateUrl: './transaction-history.html',
+  styleUrl: './transaction-history.scss',
+})
+export class TransactionHistory implements OnInit {
 
-//   selector: 'app-transaction-history',
-//   imports:[CommonModule,FormsModule],
-//   templateUrl: './transaction-history.html',
-//   styleUrl: './transaction-history.scss',
-// })
+  allTransactions: any[] = [];
+  transactions: any[] = [];
+  filteredTransactions: any[] = [];
 
-// export class TransactionHistory implements OnInit {
+  loading = false;
 
-//   allTransactions: any[] = []; // Stores all 300 (or filtered) records
-//   transactions: any[] = [];    // Stores only the 5 records visible on screen
-//   loading = false;
+  fromDate: string = '';
+  toDate: string = '';
 
-//   fromDate: string = '';
-//   toDate: string = '';
-//   // Filter States
-//   type = '';
-//   minAmount: number | null = null;
-//   maxAmount: number | null = null;
-//   sortBy = '';
-//   order = 'asc';
+  type: string = '';
+  minAmount: number | null = null;
+  maxAmount: number | null = null;
 
-//   // Pagination States
+  page = 1;
+  limit = 9;
 
-//   page = 1;
-//   limit = 9;
+  constructor(
+    private service: AccountsService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cd: ChangeDetectorRef   // ✅ IMPORTANT
+  ) {}
 
-//   constructor(private service: AccountsService, private cdr: ChangeDetectorRef,
-//     private router: Router,
-//      private route: ActivatedRoute
-//   ) {}
+  ngOnInit(): void {
+    this.loadTransactions(); // ✅ load on page open
+  }
 
-//   ngOnInit(): void {
-//     this.loadTransactions();
-//   }
+  loadTransactions() {
+  this.loading = true;
 
-//   loadTransactions() {
-//   this.loading = true;
+  this.service.getAllTransactions().subscribe({
+    next: (data) => {
+      this.allTransactions = data || [];
+      this.filteredTransactions = [...this.allTransactions];
+      this.page = 1;
 
-//   let params: any = {};
+      // 1. First, populate the data for the UI
+      this.updatePagedData();
 
-//   const accountId = +this.route.snapshot.paramMap.get('id')!;
-//   console.log("Account ID:", accountId);
+      // 2. Then, turn off loading and refresh the UI
+      this.loading = false;
+      this.cd.detectChanges(); // 🔥 Now it sees the data in 'transactions'
+    },
+    error: () => {
+      this.loading = false;
+      this.cd.detectChanges();
+    }
+  });
+}
 
-//   if (accountId) {
-//     params.accountId = accountId;
-//   }
+  // ✅ APPLY FILTERS (ONLY WHEN BUTTON CLICKED)
+  applyFilters() {
+    let filtered = [...this.allTransactions];
 
-//   if (this.type) params.type = this.type;
-//   if (this.minAmount != null) params.amount_gte = Number(this.minAmount);
-//   if (this.maxAmount != null) params.amount_lte = Number(this.maxAmount);
+    // Type
+    if (this.type) {
+      filtered = filtered.filter(t => t.type === this.type);
+    }
 
-//   if (this.fromDate) params.date_gte = this.fromDate;
-//   if (this.toDate) params.date_lte = this.toDate;
+    // Amount
+    if (this.minAmount !== null) {
+      filtered = filtered.filter(t => t.amount >= this.minAmount!);
+    }
 
-//   this.service.getAllTransactions(params).subscribe({
-//     next: (data) => {
-//       this.allTransactions = data;
-//       this.updatePagedData();
-//       this.loading = false;
-//     },
-//     error: () => {
-//       this.loading = false;
-//     }
-//   });
-// }
+    if (this.maxAmount !== null) {
+      filtered = filtered.filter(t => t.amount <= this.maxAmount!);
+    }
 
-//   updatePagedData() {
-//     const start = (this.page - 1) * this.limit;
-//     const end = start + this.limit;
-//     // Slice the full list to get just the current page
-//     this.transactions = this.allTransactions.slice(start, end);
-//   }
+    // ✅ Date filter
+    if (this.fromDate) {
+      filtered = filtered.filter(t =>
+        new Date(t.date) >= new Date(this.fromDate)
+      );
+    }
 
-//   applyFilters() {
-//     this.page = 1; // Reset to page 1 for new search
-//     this.loadTransactions();
-//   }
+    if (this.toDate) {
+      filtered = filtered.filter(t =>
+        new Date(t.date) <= new Date(this.toDate)
+      );
+    }
 
-//   nextPage() {
-//     if (this.page < this.totalPages) {
-//       this.page++;
-//       this.updatePagedData();
-//     }
-//   }
+    this.filteredTransactions = filtered;
+    this.page = 1;
 
-//   prevPage() {
-//     if (this.page > 1) {
-//       this.page--;
-//       this.updatePagedData();
-//     }
-//   }
+    this.updatePagedData();
+  }
 
-//   get totalPages(): number {
-//     return Math.ceil(this.allTransactions.length / this.limit) || 1;
-//   }
+  // ✅ RESET FILTERS
+  resetFilters() {
+    this.type = '';
+    this.minAmount = null;
+    this.maxAmount = null;
+    this.fromDate = '';
+    this.toDate = '';
 
-//   goBack() {
-//   this.router.navigate(['/']);
-// }
+    this.filteredTransactions = [...this.allTransactions];
+    this.page = 1;
 
-// }
+    this.updatePagedData();
+  }
+
+  // ✅ PAGINATION
+  updatePagedData() {
+    const start = (this.page - 1) * this.limit;
+    const end = start + this.limit;
+
+    this.transactions = this.filteredTransactions.slice(start, end);
+  }
+
+  nextPage() {
+    if (this.page < this.totalPages) {
+      this.page++;
+      this.updatePagedData();
+    }
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.updatePagedData();
+    }
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.filteredTransactions.length / this.limit) || 1;
+  }
+}

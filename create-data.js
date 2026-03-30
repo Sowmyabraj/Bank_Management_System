@@ -3,13 +3,22 @@ const fs = require('fs');
 const accounts = [];
 const transactions = [];
 
-// 🔹 Single Customer
-const customer = {
-  customerId: 1,
-  name: 'Sowmya B',
-  email: 'sowmya@bank.com',
-  phone: '9876543210'
-};
+// ✅ FIXED CUSTOMER ARRAY
+const customers = [
+  {
+    customerId: 1,
+    name: 'Sowmya B',
+    email: 'sowmya@bank.com',
+    phone: '9876543210',
+    password: 'Sowmya@123',
+    address: 'Chennai, India',
+    dob: '2000-05-10',
+    kycStatus: 'Verified',
+    accountStatus: 'Active'
+  }
+];
+
+const customer = customers[0];
 
 // 🔹 Data Pools
 const branches = ['Chennai', 'Hyderabad', 'Bangalore', 'Mumbai', 'Delhi'];
@@ -49,7 +58,7 @@ function pad(n) {
   return n.toString().padStart(2, '0');
 }
 
-// 🔹 Create 3 Accounts (Savings, Current, Salary)
+// 🔹 Accounts
 for (let i = 1; i <= 3; i++) {
   const accountNumber = (1000000000 + i).toString();
   const type = accountTypes[i - 1];
@@ -79,8 +88,8 @@ for (let i = 1; i <= 3; i++) {
 
   let runningBalance = balance;
 
-  // 🔹 200 Transactions per account
-  for (let j = 1; j <= 200; j++) {
+  // 🔹 Transactions
+  for (let j = 1; j <= 100; j++) {
     const isCredit = Math.random() > 0.5;
     const amount = randomAmount(100, 10000);
 
@@ -88,7 +97,6 @@ for (let i = 1; i <= 3; i++) {
 
     let description;
 
-    // 🔹 Salary-specific logic
     if (type === 'Salary' && isCredit && Math.random() > 0.7) {
       description = 'Monthly Salary Credit';
     } else {
@@ -97,12 +105,10 @@ for (let i = 1; i <= 3; i++) {
         : random(debitDescriptions);
     }
 
-    // Update balance
-    if (txnType === 'Credit') {
-      runningBalance += amount;
-    } else {
-      runningBalance -= amount;
-    }
+    runningBalance =
+      txnType === 'Credit'
+        ? runningBalance + amount
+        : runningBalance - amount;
 
     const day = pad(randomAmount(1, 28));
 
@@ -121,10 +127,10 @@ for (let i = 1; i <= 3; i++) {
   }
 }
 
-// 🔹 Write file
+// ✅ FINAL WRITE
 fs.writeFileSync(
   'db.json',
-  JSON.stringify({ customer, accounts, transactions }, null, 2)
+  JSON.stringify({ customer: customers, accounts, transactions }, null, 2)
 );
 
-console.log('✅ db.json created: 1 customer, 3 accounts, 200 transactions each');
+console.log('✅ db.json created successfully');

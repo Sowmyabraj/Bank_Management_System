@@ -1,52 +1,36 @@
-<!-- <h2>📄 Account Statement</h2>
+<div class="statement-container">
 
-<div class="form">
+  <h2>📄 Account Statement</h2>
 
-   🔹 Select Account 
-  <select [(ngModel)]="selectedAccountId">
-    <option value="">Select Account</option>
-    <option *ngFor="let acc of accounts" [value]="acc.id">
-      {{ acc.customerName }} - ****{{ acc.accountNumber.slice(-4) }}
-    </option>
-  </select>
+  <div class="form-row">
 
-   🔹 Date Range 
-  <input type="date" [(ngModel)]="fromDate">
-  <input type="date" [(ngModel)]="toDate">
+    <!-- Account -->
+    <select [(ngModel)]="selectedAccountId">
+      <option value="" disabled selected hidden>Select Account</option>
+      <option *ngFor="let acc of accounts" [value]="acc.id">
+        {{ acc.customerName }} - ****{{ acc.accountNumber?.slice(-4) }}
+      </option>
+    </select>
 
-  🔹 Generate 
-  <button (click)="generateStatement()">Generate</button>
+    <!-- From Date -->
+    <input type="date" [(ngModel)]="fromDate">
+
+    <!-- To Date -->
+    <input type="date" [(ngModel)]="toDate">
+
+    <!-- Format -->
+    <select [(ngModel)]="format">
+      <option value="" disabled selected hidden>Select Format</option>
+      <option value="pdf">PDF</option>
+      <option value="csv">CSV</option>
+    </select>
+
+    <!-- Download -->
+    <button (click)="downloadStatement()">Download</button>
+
+    <button class="secondary-btn" (click)="resetForm()">
+  Reset
+</button>
+  </div>
 
 </div>
-
-🔹 Loading 
-<div *ngIf="loading">Generating statement...</div>
-
-🔹 Table 
-<table *ngIf="transactions.length > 0">
-  <tr>
-    <th>Date</th>
-    <th>Type</th>
-    <th>Amount</th>
-    <th>Balance</th>
-    <th>Mode</th>
-  </tr>
-
-  <tr *ngFor="let t of transactions">
-    <td>{{ t.date }}</td>
-    <td>{{ t.type }}</td>
-    <td>₹ {{ t.amount }}</td>
-    <td>₹ {{ t.balanceAfter }}</td>
-    <td>{{ t.mode }}</td>
-  </tr>
-</table>
-
-<!-- 🔹 Actions 
-<div *ngIf="transactions.length > 0" class="actions">
-  <button (click)="downloadCSV()">Download CSV</button>
-  <button (click)="downloadPDF()">Download PDF</button>
-</div>
-
-<div *ngIf="!loading && transactions.length === 0">
-  No data found
-</div> -->

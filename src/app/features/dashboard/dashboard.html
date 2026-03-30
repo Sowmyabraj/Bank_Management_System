@@ -1,45 +1,80 @@
-<h2 class="title">🏦 Welcome to Your Dashboard</h2>
+<div class="layout">
 
-<p class="subtitle">
-  Manage your accounts, track transactions, and monitor your balance easily.
-</p>
+  <!-- 🔹 Sidebar -->
+  <aside class="sidebar">
 
-<div class="card-container">
+    <h2 class="logo" routerLink="/dashboard">🏦 MyBank</h2>
 
-  <div class="card" [style.backgroundColor]="showDetails ? '#e6f7ff' : '#ffffff'">
-    <div class="label">Total Accounts</div>
-    <div class="value">{{ showDetails ? totalAccounts : '---' }}</div>
-  </div>
+    <nav>
+      <a routerLink="/" routerLinkActive="active">
+        <span class="icon">🏠</span> Home
+      </a>
 
-  <div class="card" [style.backgroundColor]="showDetails ? '#e6f7ff' : '#ffffff'">
-    <div class="label">Total Balance</div>
-    <div class="value">
-      ₹ {{ showDetails ? (totalBalance | number:'1.2-2') : 'XXXX.XX' }}
+      <a routerLink="/dashboard/accounts" routerLinkActive="active">
+        <span class="icon">💳</span> Accounts
+      </a>
+
+      <a routerLink="/dashboard/transactions" routerLinkActive="active">
+        <span class="icon">📊</span> Transactions
+      </a>
+
+      <a routerLink="/dashboard/statements" routerLinkActive="active">
+        <span class="icon">📄</span> Statements
+      </a>
+    </nav>
+
+    <div class="logout" (click)="onLogout()">
+      <span class="icon">🚪</span> Logout
     </div>
-  </div>
 
-  <div class="card" [style.backgroundColor]="showDetails ? '#e6f7ff' : '#ffffff'">
-    <div class="label">Total Transactions</div>
-    <div class="value">{{ showDetails ? totalTransactions : '---' }}</div>
-  </div>
+  </aside>
 
-</div>
+  <!-- 🔹 Main -->
+  <main class="main">
 
-<div class="action-section">
-  <button class="primary-btn" (click)="toggleDetails()">
-    {{ showDetails ? 'Hide Details' : 'View Details' }}
-  </button>
-</div>
+    <!-- 🔹 Header -->
+    <header class="header">
 
-<div class="nav-section">
-  <button class="secondary-btn" routerLink="/accounts">
-    View Accounts
-  </button>
+      <div class="center">
+        <span class="welcome">
+          Welcome, {{ customerName || 'Customer' }}
+        </span>
+      </div>
 
-  <!-- <button class="secondary-btn" routerLink="/accounts/transactions">
-    View Transactions
-  </button>
-  <button class="secondary-btn" [routerLink]="['/statements']">
-  View Statements
-</button> -->
+      <div class="right">
+
+        <div class="balance" (click)="toggleDetails()">
+          <span class="label">Balance</span>
+
+          <!-- ✅ Loading -->
+          <!-- <span *ngIf="isLoading">Loading...</span> -->
+
+          <!-- ✅ Error -->
+          <span *ngIf="errorMessage" class="error">
+            {{ errorMessage }}
+          </span>
+
+          <!-- ✅ Data -->
+          <span *ngIf="!isLoading && !errorMessage" class="value">
+            ₹ {{ showDetails ? (totalBalance | number:'1.2-2') : '••••••' }}
+          </span>
+
+          <span class="eye">👁</span>
+        </div>
+
+        <div class="profile-icon">
+          {{ customerName?.charAt(0) || 'C' }}
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- 🔹 Body -->
+    <section class="body">
+      <router-outlet></router-outlet>
+    </section>
+
+  </main>
+
 </div>

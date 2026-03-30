@@ -1,0 +1,115 @@
+/* 🔥 RESET */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* 🔹 Background (stronger color) */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+
+  /* darker soft gradient */
+  background: linear-gradient(to right, #cfd9df, #e2ebf0);
+}
+
+/* 🔹 Card (NO MORE WHITE LOOK) */
+.login-card {
+  width: 340px;
+  padding: 30px;
+
+  background: #dde5ec; /* darker than before */
+  border-radius: 12px;
+  border: 1px solid #b8c2cc;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* 🔹 Title */
+.login-card h2 {
+  margin-bottom: 20px;
+  color: #243b53;
+  font-weight: 600;
+}
+
+/* 🔹 Input Group */
+.input-group {
+  display: flex;
+  align-items: center;
+
+  background: #cfd8e3; /* darker input background */
+  border: 1px solid #aeb8c2;
+  border-radius: 6px;
+
+  margin-bottom: 15px;
+  padding: 0 12px;
+  height: 42px;
+}
+
+/* 🔹 Icons */
+.icon {
+  font-size: 16px;
+  width: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-right: 10px;
+  color: #4a5d73;
+}
+
+/* 🔹 Inputs */
+.input-group input {
+  border: none;
+  outline: none;
+  background: transparent;
+
+  flex: 1;
+  height: 100%;
+
+  font-size: 14px;
+  color: #1f2933;
+}
+
+/* 🔹 Button */
+.login-card button {
+  width: 100%;
+  padding: 10px;
+
+  background: #2a4d69;
+  color: white;
+
+  border: none;
+  border-radius: 6px;
+
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.login-card button:hover {
+  background: #1f3a5f;
+}
+
+.login-card button:disabled {
+  background: #9aa5b1;
+}
+
+/* 🔹 Error */
+.error {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-size: 13px;
+  display: block;
+}
+
+.error-message {
+  color: red;
+  font-weight: 500;
+  margin-top: 10px;
+}

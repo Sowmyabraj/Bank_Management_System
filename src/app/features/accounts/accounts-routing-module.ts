@@ -1,12 +1,37 @@
 import { Routes } from '@angular/router';
-import { AccountOverview } from './components/account-overview/account-overview';
-//import { TransactionHistory } from './components/transaction-history/transaction-history';
-import { AccountDetails } from './components/account-details/account-details';
 
 export const ACCOUNTS_ROUTES: Routes = [
- { path: '', component: AccountOverview },
-  // { path: 'transactions', component: TransactionHistory },
 
-  // 🔥 NEW ROUTE
-  { path: ':id', component: AccountDetails }
+  // 🔹 Account Overview
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/account-overview/account-overview')
+        .then(m => m.AccountOverview)
+  },
+
+  // 🔹 Transactions (Required feature)
+  {
+    path: 'transactions',
+    loadComponent: () =>
+      import('./components/transaction-history/transaction-history')
+        .then(m => m.TransactionHistory)
+  },
+
+  // 🔹 Statements
+  {
+    path: 'statements',
+    loadComponent: () =>
+      import('./components/statement/statement')
+        .then(m => m.Statements)
+  },
+
+  // 🔹 Account Details (SAFE dynamic route)
+  {
+    path: 'details/:id',
+    loadComponent: () =>
+      import('./components/account-details/account-details')
+        .then(m => m.AccountDetails)
+  }
+
 ];

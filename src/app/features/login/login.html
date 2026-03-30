@@ -1,0 +1,45 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>🏦 MyBank Login</h2>
+
+    <form [formGroup]="form" (ngSubmit)="login()">
+
+      <!-- EMAIL -->
+      <div class="input-group">
+        <span class="icon">✉️</span>
+        <input type="email" placeholder="Enter Email" formControlName="email" />
+      </div>
+
+      <div class="error" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+        <small *ngIf="form.get('email')?.errors?.['required']">Email is required</small>
+        <small *ngIf="form.get('email')?.errors?.['email']">Invalid email format</small>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="input-group">
+        <span class="icon">🔑</span>
+        <input type="password" placeholder="Enter Password" formControlName="password" />
+      </div>
+
+      <div class="error" *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+        <small *ngIf="form.get('password')?.errors?.['required']">Password is required</small>
+        <small *ngIf="form.get('password')?.errors?.['minlength']">
+          Minimum 6 characters required
+        </small>
+      </div>
+
+      <!-- BUTTON -->
+      <button type="submit" [disabled]="isLoading || form.invalid" class="login-btn">
+        <span *ngIf="isLoading" class="spinner"></span>
+        {{ isLoading ? 'Logging in...' : 'Login' }}
+      </button>
+
+    </form>
+
+    <!-- API ERROR -->
+    <p *ngIf="error" class="error-message">
+  {{ error }}
+</p>
+
+  </div>
+</div>

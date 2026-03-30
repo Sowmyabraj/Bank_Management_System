@@ -1,45 +1,36 @@
-/* 🔹 Page */
-:host {
-  display: flex;
-  justify-content: center;
-  padding: 30px;
-  background: linear-gradient(135deg, #eef2f7, #f8fbff);
-  font-family: 'Segoe UI', sans-serif;
-}
-
 /* 🔹 Container */
 .container {
-  width: 100%;
   max-width: 1000px;
+  margin: 0 auto;
 }
 
 /* 🔹 Title */
 .title {
-  text-align: center;
-  color: #0d47a1;
+  font-size: 22px;
+  font-weight: 600;
   margin-bottom: 20px;
+  color: #2a4d69;
 }
 
-/* 🔹 Filter Bar */
+/* 🔹 Filters */
 .filter-bar {
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 20px;
-  justify-content: center;
 }
 
-/* 🔹 Inputs */
-select,
-input {
-  padding: 8px 10px;
+.filter-bar input,
+.filter-bar select {
+  padding: 8px;
+  border: 1px solid #cfd8e3;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  background: #e3ebf3;
 }
 
-/* 🔹 Button */
+/* 🔹 Buttons */
 .primary-btn {
-  background: #1a73e8;
+  background: #2a4d69;
   color: white;
   border: none;
   padding: 8px 14px;
@@ -47,95 +38,80 @@ input {
   cursor: pointer;
 }
 
-.primary-btn:hover {
-  background: #0d47a1;
+.secondary-btn {
+  background: #9aa5b1;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-/* 🔹 Loading */
-.loading {
-  text-align: center;
-  color: #1a73e8;
+/* 🔹 Table */
+.table-container {
+  overflow-x: auto;
 }
 
-/* 🔹 Empty */
-.empty {
-  text-align: center;
-  color: #999;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* 🔹 Transaction Grid */
-.transaction-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: center;
+/* 🔹 Header */
+thead {
+  background: #2a4d69;
+  color: white;
 }
 
-/* 🔹 Card */
-.transaction-card {
-  width: 230px;
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-  transition: 0.3s;
-  border-left: 4px solid #1a73e8;
+th {
+  padding: 12px;
+  text-align: left;
 }
 
-.transaction-card:hover {
-  transform: translateY(-5px);
+/* 🔹 Rows */
+td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-/* 🔹 Text */
-.tx-type {
-  font-weight: bold;
-  color: #555;
+/* 🔹 Hover */
+tbody tr:hover {
+  background: #f5f8fb;
 }
 
-.tx-amount {
-  font-size: 20px;
-  font-weight: bold;
-  color: #1b5e20;
+/* 🔹 Debit / Credit */
+.debit {
+  color: red;
+  font-weight: 500;
 }
 
-.tx-desc {
-  font-size: 13px;
-  color: #777;
+.credit {
+  color: green;
+  font-weight: 500;
 }
 
 /* 🔹 Pagination */
 .pagination {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 15px;
-  margin-top: 20px;
 }
 
-/* 🔹 Pagination Buttons */
 .pagination button {
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid #1a73e8;
-  background: white;
-  color: #1a73e8;
-  cursor: pointer;
-}
-
-.pagination button:hover:not(:disabled) {
-  background: #1a73e8;
+  padding: 6px 10px;
+  background: #2a4d69;
   color: white;
-}
-
-.pagination button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  border: none;
+  border-radius: 5px;
 }
 
 /* 🔹 Total */
 .total {
-  text-align: center;
   margin-top: 10px;
-  font-size: 12px;
-  color: gray;
+  text-align: center;
+  color: #555;
 }

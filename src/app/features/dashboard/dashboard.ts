@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+
 import { AccountsService } from '../accounts/services/accounts';
+import { Auth } from '../../core/services/auth';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,35 +13,59 @@ import { AccountsService } from '../accounts/services/accounts';
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss']
 })
-export class Dashboard implements OnInit {
+export class Dashboard implements OnInit, OnDestroy {
 
   totalBalance = 0;
-  totalAccounts = 0;
-  totalTransactions = 0;
-
   showDetails = false;
+  customerName = '';
+  isLoading = true;
+  errorMessage = '';
 
-  constructor(private service: AccountsService) {}
+  private destroy$ = new Subject<void>();
+
+  constructor(
+    private accountsService: AccountsService,
+    private authService: Auth,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    // ✅ Get logged-in user
+    this.customerName = this.authService.getUserName();
 
-    // ✅ Accounts
-    this.service.getAccounts().subscribe(accounts => {
-      this.totalAccounts = accounts.length;
+    this.loadAccounts();
+  }
 
-      this.totalBalance = accounts.reduce(
-        (sum, acc) => sum + Number(acc.balance || 0),
-        0
-      );
-    });
+  loadAccounts() {
+    this.isLoading = true;
 
-    // ✅ Transactions (clean handling)
-    this.service.getAllTransactions().subscribe(transactions => {
-      this.totalTransactions = transactions.length;
-    });
+    this.accountsService.getAccounts()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (accounts) => {
+          this.totalBalance = this.accountsService.calculateTotalBalance(accounts);
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('Error loading accounts', err);
+          this.errorMessage = 'Unable to load account data. Please try again.';
+          this.isLoading = false;
+        }
+      });
   }
 
   toggleDetails() {
     this.showDetails = !this.showDetails;
+  }
+
+  // 🚪 Logout
+  onLogout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -1,0 +1,76 @@
+/* 🔹 Container */
+.statement-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 🔹 Title */
+.statement-container h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #2a4d69;
+}
+
+/* 🔹 Form Row */
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+  flex-wrap: nowrap;        /* 🔥 IMPORTANT: no wrapping */
+
+  padding: 20px;
+  background: #e3ebf3;
+  border: 1px solid #cfd8e3;
+  border-radius: 10px;
+
+  overflow-x: auto;         /* 🔥 scroll if small screen */
+}
+
+/* 🔹 Inputs */
+.form-row select,
+.form-row input {
+  padding: 8px 10px;
+  border: 1px solid #cfd8e3;
+  border-radius: 6px;
+  background: #f1f5f9;
+  font-size: 13px;
+  min-width: 140px;
+}
+
+/* 🔹 Focus effect */
+.form-row select:focus,
+.form-row input:focus {
+  border-color: #2a4d69;
+  box-shadow: 0 0 0 2px rgba(42,77,105,0.1);
+}
+
+.form-row button:first-of-type {
+  background: #2a4d69;
+  color: white;
+}
+
+/* 🔹 Button */
+.form-row button {
+  padding: 8px 16px;
+  background: #2a4d69;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-row button:hover {
+  background: #1f3a5f;
+}
+.secondary-btn {
+  background: #9aa5b1;
+  color: white;
+}
+
+.secondary-btn:hover {
+  background: #7b8794;
+}
