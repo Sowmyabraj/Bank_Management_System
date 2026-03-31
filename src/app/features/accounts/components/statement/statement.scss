@@ -1,76 +1,198 @@
-/* 🔹 Container */
-.statement-container {
-  max-width: 900px;
-  margin: 0 auto;
+
+
+// /* 🔥 MAIN CONTAINER */
+// .container {
+//   max-width: 600px;
+//   margin: 40px auto;
+//   padding: 30px;
+
+//   background: #c7d2fe;
+//   border: 1px solid #8b9cf6;
+//   border-radius: 16px;
+
+//   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }
+
+// /* 🔥 TITLE */
+// .container h2 {
+//   font-size: 22px;
+//   font-weight: 600;
+//   color: #1e293b;
+//   margin-bottom: 20px;
+// }
+
+// /* 🔥 FORM AREA */
+// .container > div {
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 12px;
+// }
+
+// /* 🔥 INPUTS & SELECT */
+// select,
+// input {
+//   width: 100%;
+//   padding: 10px 12px;
+//   border-radius: 10px;
+//   border: 1px solid #c7d2fe;
+//   background: #f8fafc;
+//   font-size: 14px;
+// }
+
+// select:focus,
+// input:focus {
+//   outline: none;
+//   border-color: #2563eb;
+// }
+
+// /* 🔥 BUTTON GROUP */
+// .container button {
+//   padding: 10px;
+//   border-radius: 10px;
+//   border: none;
+//   cursor: pointer;
+//   font-size: 14px;
+
+//   background: linear-gradient(135deg, #2563eb, #4f46e5);
+//   color: white;
+
+//   transition: 0.2s;
+// }
+
+// /* 🔥 HOVER */
+// .container button:hover {
+//   transform: translateY(-2px);
+//   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+// }
+
+// /* 🔥 RESET BUTTON (SECOND BUTTON) */
+// .container button:last-child {
+//   background: #e0e7ff;
+//   color: #1e293b;
+// }
+
+// .container button:last-child:hover {
+//   background: #c7d2fe;
+// }
+
+// /* 🔥 LOADING / ERROR */
+// .container div[ng-reflect-ng-if] {
+//   text-align: center;
+//   font-size: 14px;
+//   color: #475569;
+// }
+
+
+
+/* 🔥 CONTAINER */
+.container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 25px;
+
+  background: #c7d2fe;
+  border: 1px solid #8b9cf6;
+  border-radius: 16px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* 🔥 TITLE */
+.container h2 {
   text-align: center;
+  margin-bottom: 20px;
+  color: #1e293b;
 }
 
-/* 🔹 Title */
-.statement-container h2 {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 25px;
-  color: #2a4d69;
-}
-
-/* 🔹 Form Row */
-.form-row {
+/* 🔥 FORM GROUP */
+.form-group {
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 10px;
-  flex-wrap: nowrap;        /* 🔥 IMPORTANT: no wrapping */
-
-  padding: 20px;
-  background: #e3ebf3;
-  border: 1px solid #cfd8e3;
-  border-radius: 10px;
-
-  overflow-x: auto;         /* 🔥 scroll if small screen */
+  flex-direction: column;
+  margin-bottom: 15px;
 }
 
-/* 🔹 Inputs */
-.form-row select,
-.form-row input {
-  padding: 8px 10px;
-  border: 1px solid #cfd8e3;
-  border-radius: 6px;
-  background: #f1f5f9;
+/* 🔥 LABEL */
+.form-group label {
   font-size: 13px;
-  min-width: 140px;
+  margin-bottom: 5px;
+  color: #475569;
 }
 
-/* 🔹 Focus effect */
-.form-row select:focus,
-.form-row input:focus {
-  border-color: #2a4d69;
-  box-shadow: 0 0 0 2px rgba(42,77,105,0.1);
+/* 🔥 INPUT + SELECT */
+select,
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #c7d2fe;
+  background: #f8fafc;
+  font-size: 14px;
 }
 
-.form-row button:first-of-type {
-  background: #2a4d69;
+/* 🔥 DISABLED STATE */
+select:disabled {
+  background: #e0e7ff;
+  color: #475569;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+/* 🔥 READONLY TEXT */
+.readonly-text {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* 🔥 BUTTON GROUP */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* 🔥 PRIMARY BUTTON */
+.primary-btn {
+  flex: 1;
+  padding: 10px;
+
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
   color: white;
-}
 
-/* 🔹 Button */
-.form-row button {
-  padding: 8px 16px;
-  background: #2a4d69;
-  color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-.form-row button:hover {
-  background: #1f3a5f;
-}
+/* 🔥 SECONDARY BUTTON */
 .secondary-btn {
-  background: #9aa5b1;
-  color: white;
+  flex: 1;
+  padding: 10px;
+
+  background: #e0e7ff;
+  color: #1e293b;
+
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 🔥 HOVER */
+.primary-btn:hover {
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
 }
 
 .secondary-btn:hover {
-  background: #7b8794;
+  background: #c7d2fe;
+}
+
+/* 🔥 ERROR */
+.error {
+  color: #dc2626;
+  text-align: center;
+  margin-bottom: 10px;
 }

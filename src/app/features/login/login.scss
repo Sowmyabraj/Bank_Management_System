@@ -1,115 +1,134 @@
-/* 🔥 RESET */
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-/* 🔹 Background (stronger color) */
-.login-container {
+/* 🔹 Page Background */
+.login-page {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 20px;
 
+  background: linear-gradient(135deg, #dbeafe, #e0e7ff);
   font-family: "Segoe UI", Arial, sans-serif;
-
-  /* darker soft gradient */
-  background: linear-gradient(to right, #cfd9df, #e2ebf0);
 }
 
-/* 🔹 Card (NO MORE WHITE LOOK) */
+/* 🔹 Container */
+.login-container {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* 🔹 Card */
 .login-card {
-  width: 340px;
-  padding: 30px;
+  background: #c7d2fe;
+  padding: 24px 20px;
+  border-radius: 14px;
 
-  background: #dde5ec; /* darker than before */
-  border-radius: 12px;
-  border: 1px solid #b8c2cc;
+  border: 1px solid #8b9cf6;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   text-align: center;
 }
 
-/* 🔹 Title */
+/* 🔹 Heading */
 .login-card h2 {
   margin-bottom: 20px;
-  color: #243b53;
+  color: #1e293b;
+  font-size: 22px;
   font-weight: 600;
 }
 
-/* 🔹 Input Group */
+/* 🔹 INPUT GROUP (FIXED ALIGNMENT) */
 .input-group {
   display: flex;
-  align-items: center;
+  align-items: center; /* 🔥 keeps icon + text in one line */
 
-  background: #cfd8e3; /* darker input background */
-  border: 1px solid #aeb8c2;
-  border-radius: 6px;
+  background: #e9edff;
+  border: 1.5px solid #8b9cf6;
+  border-radius: 10px;
 
-  margin-bottom: 15px;
-  padding: 0 12px;
-  height: 42px;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+
+  transition: 0.2s;
 }
 
-/* 🔹 Icons */
-.icon {
-  font-size: 16px;
-  width: 20px;
+/* 🔥 Focus effect */
+.input-group:focus-within {
+  border-color: #2563eb;
+  background: #eef2ff;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
 
+/* 🔹 Icon (FIXED SIZE) */
+.input-group .icon {
   display: flex;
   align-items: center;
   justify-content: center;
 
+  width: 24px;
+  height: 24px;
+
   margin-right: 10px;
-  color: #4a5d73;
+  font-size: 16px;
+  color: #2563eb;
 }
 
-/* 🔹 Inputs */
+/* 🔹 Input (FIXED ALIGNMENT) */
 .input-group input {
+  flex: 1;
+  height: 24px;
+
   border: none;
   outline: none;
   background: transparent;
 
-  flex: 1;
-  height: 100%;
-
   font-size: 14px;
-  color: #1f2933;
+  color: #1e293b;
 }
 
-/* 🔹 Button */
-.login-card button {
-  width: 100%;
-  padding: 10px;
-
-  background: #2a4d69;
-  color: white;
-
-  border: none;
-  border-radius: 6px;
-
-  cursor: pointer;
+/* 🔹 Placeholder */
+.input-group input::placeholder {
+  color: #475569;
   font-weight: 500;
-}
-
-.login-card button:hover {
-  background: #1f3a5f;
-}
-
-.login-card button:disabled {
-  background: #9aa5b1;
 }
 
 /* 🔹 Error */
-.error {
-  margin-top: 10px;
-  color: #b91c1c;
-  font-size: 13px;
-  display: block;
+.error small {
+  color: #dc2626;
+  font-size: 11px;
 }
 
+/* 🔹 Login Button */
+.login-btn {
+  width: 100%;
+  padding: 11px;
+  margin-top: 12px;
+
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
+}
+
+/* 🔹 Disabled Button */
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 🔹 Error Message */
 .error-message {
-  color: red;
-  font-weight: 500;
   margin-top: 10px;
+  color: #dc2626;
+  font-size: 13px;
 }

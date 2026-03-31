@@ -2,7 +2,7 @@
 
   <h2 class="title">📊 Transaction History</h2>
 
-  <!-- 🔹 Filters -->
+  <!-- Filters -->
   <div class="filter-bar">
     <select [(ngModel)]="type">
       <option value="">All Types</option>
@@ -16,75 +16,69 @@
     <input type="date" [(ngModel)]="fromDate">
     <input type="date" [(ngModel)]="toDate">
 
-    <button class="primary-btn" (click)="applyFilters()">
-      Apply
-    </button>
-
-    <button class="secondary-btn" (click)="resetFilters()">
-      Reset
-    </button>
+    <button (click)="applyFilters()">Apply</button>
+    <button (click)="resetFilters()">Reset</button>
   </div>
 
-  <!-- 🔹 Loading -->
-  <div *ngIf="loading" class="loading">Loading...</div>
+  <!-- Loading -->
+  <div *ngIf="loading$ | async">Loading...</div>
 
-  <!-- 🔹 Empty -->
-  <div *ngIf="!loading && transactions.length === 0" class="empty">
-    No records found.
-  </div>
+  <!-- Error -->
+  <div *ngIf="error$ | async as err">{{ err }}</div>
 
-  <div class="table-container" *ngIf="!loading && transactions.length > 0">
+  <!-- Data -->
+  <div *ngIf="(transactions$ | async) as transactions">
 
-  <table>
+    <div *ngIf="transactions.length === 0">
+      No records found.
+    </div>
 
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Description</th>
-        <th>Amount (₹)</th>
-        <th>Balance (₹)</th>
-      </tr>
-    </thead>
+    <div *ngIf="transactions.length > 0" class="table-container">
 
-    <tbody>
-      <tr *ngFor="let t of transactions">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Amount (₹)</th>
+            <th>Balance (₹)</th>
+          </tr>
+        </thead>
 
-        <td>{{ t.date | date:'dd MMM yyyy' }}</td>
+        <tbody>
+          <tr *ngFor="let t of transactions">
 
-        <td>{{ t.description }}</td>
+            <td>{{ t.date | date:'dd MMM yyyy' }}</td>
+            <td>{{ t.description }}</td>
 
-        <!-- 🔥 Single Amount Column -->
-        <td 
-          [ngClass]="{
-            'credit': t.type === 'Credit',
-            'debit': t.type === 'Debit'
-          }"
-        >
-          {{ t.type === 'Credit' ? '+' : '-' }}
-          {{ t.amount | number:'1.2-2' }}
-        </td>
+            <td [ngClass]="{
+              'credit': t.type === 'Credit',
+              'debit': t.type === 'Debit'
+            }">
+              {{ t.type === 'Credit' ? '+' : '-' }}
+              {{ t.amount | number:'1.2-2' }}
+            </td>
 
-        <td>
-          {{ t.balanceAfter | number:'1.2-2' }}
-        </td>
+            <td>{{ t.balanceAfter | number:'1.2-2' }}</td>
 
-      </tr>
-    </tbody>
+          </tr>
+        </tbody>
+      </table>
 
-  </table>
+    </div>
 
-</div>
+    <!-- Pagination -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="page === 1">⬅</button>
+      <span>Page {{ page }} of {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="page >= totalPages">➡</button>
+    </div>
 
-  <!-- 🔹 Pagination -->
-  <div class="pagination">
-    <button (click)="prevPage()" [disabled]="page === 1">⬅</button>
-    <span>Page {{ page }} of {{ totalPages }}</span>
-    <button (click)="nextPage()" [disabled]="page >= totalPages">➡</button>
-  </div>
+    <!-- Total -->
+    <div class="total">
+      Total Records: {{ filteredTransactions.length }}
+    </div>
 
-  <!-- 🔹 Total -->
-  <div class="total">
-    Total Records: {{ filteredTransactions.length }}
   </div>
 
 </div>

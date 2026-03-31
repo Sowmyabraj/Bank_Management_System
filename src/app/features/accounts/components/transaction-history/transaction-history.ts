@@ -1,8 +1,10 @@
-import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { Component ,Input, SimpleChanges} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { Router, ActivatedRoute } from "@angular/router";
 import { AccountsService } from '../../services/accounts';
+import { BehaviorSubject } from "rxjs";
+import { Transaction } from "../../Models/transaction.model";
+
 
 @Component({
   selector: 'app-transaction-history',
@@ -11,68 +13,115 @@ import { AccountsService } from '../../services/accounts';
   templateUrl: './transaction-history.html',
   styleUrl: './transaction-history.scss',
 })
-export class TransactionHistory implements OnInit {
+export class TransactionHistory {
 
-  allTransactions: any[] = [];
-  transactions: any[] = [];
-  filteredTransactions: any[] = [];
+  @Input() accountId?: number;  // ✅ ADD THIS
 
-  loading = false;
+  private allTransactions: Transaction[] = [];
 
-  fromDate: string = '';
-  toDate: string = '';
+  private paginatedSubject = new BehaviorSubject<Transaction[]>([]);
+  transactions$ = this.paginatedSubject.asObservable();
 
-  type: string = '';
+  loading$ = new BehaviorSubject<boolean>(true);
+  error$ = new BehaviorSubject<string>('');
+
+  // 🔹 Filters
+  fromDate = '';
+  toDate = '';
+  type = '';
   minAmount: number | null = null;
   maxAmount: number | null = null;
 
+  // 🔹 Pagination
   page = 1;
   limit = 9;
+  totalPages = 0;
 
-  constructor(
-    private service: AccountsService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private cd: ChangeDetectorRef   // ✅ IMPORTANT
-  ) {}
+  filteredTransactions: Transaction[] = [];
 
-  ngOnInit(): void {
-    this.loadTransactions(); // ✅ load on page open
+  constructor(private service: AccountsService) {
+    this.loadTransactions(); // ✅ load immediately
   }
 
-  loadTransactions() {
-  this.loading = true;
+  // loadTransactions() {
+  //   this.loading$.next(true);
+
+  //   this.service.getAllTransactions().subscribe({
+  //     next: (data) => {
+  //       this.allTransactions = data || [];
+  //       this.filteredTransactions = [...this.allTransactions];
+
+  //       this.page = 1;
+  //       this.totalPages = this.calculateTotalPages();
+
+  //       this.updatePagedData();
+
+  //       this.loading$.next(false);
+  //     },
+  //     error: () => {
+  //       this.error$.next('Failed to load transactions');
+  //       this.loading$.next(false);
+  //     }
+  //   });
+  // }
+
+
+ loadTransactions() {
+  this.loading$.next(true);
 
   this.service.getAllTransactions().subscribe({
     next: (data) => {
-      this.allTransactions = data || [];
-      this.filteredTransactions = [...this.allTransactions];
-      this.page = 1;
 
-      // 1. First, populate the data for the UI
+      console.log("Account ID:", this.accountId);
+
+      if (this.accountId) {
+        // ✅ ACCOUNT DETAILS → FILTER
+        this.allTransactions = (data || []).filter(
+          t => Number(t.accountId) === Number(this.accountId)
+        );
+      } else {
+        // ✅ TRANSACTIONS PAGE → SHOW ALL
+        this.allTransactions = data || [];
+      }
+
+      this.filteredTransactions = [...this.allTransactions];
+
+      this.page = 1;
+      this.totalPages = this.calculateTotalPages();
+
       this.updatePagedData();
 
-      // 2. Then, turn off loading and refresh the UI
-      this.loading = false;
-      this.cd.detectChanges(); // 🔥 Now it sees the data in 'transactions'
+      this.loading$.next(false);
     },
     error: () => {
-      this.loading = false;
-      this.cd.detectChanges();
+      this.error$.next('Failed to load transactions');
+      this.loading$.next(false);
     }
   });
 }
 
-  // ✅ APPLY FILTERS (ONLY WHEN BUTTON CLICKED)
+ngOnInit() {
+  // For standalone transactions page
+  if (!this.accountId) {
+    this.loadTransactions();
+  }
+}
+
+ngOnChanges(changes: SimpleChanges) {
+  // For account details page
+  if (changes['accountId'] && this.accountId) {
+    this.loadTransactions();
+  }
+}
+
+  // 🔹 Filters
   applyFilters() {
     let filtered = [...this.allTransactions];
 
-    // Type
     if (this.type) {
       filtered = filtered.filter(t => t.type === this.type);
     }
 
-    // Amount
     if (this.minAmount !== null) {
       filtered = filtered.filter(t => t.amount >= this.minAmount!);
     }
@@ -81,7 +130,6 @@ export class TransactionHistory implements OnInit {
       filtered = filtered.filter(t => t.amount <= this.maxAmount!);
     }
 
-    // ✅ Date filter
     if (this.fromDate) {
       filtered = filtered.filter(t =>
         new Date(t.date) >= new Date(this.fromDate)
@@ -96,11 +144,11 @@ export class TransactionHistory implements OnInit {
 
     this.filteredTransactions = filtered;
     this.page = 1;
+    this.totalPages = this.calculateTotalPages();
 
     this.updatePagedData();
   }
 
-  // ✅ RESET FILTERS
   resetFilters() {
     this.type = '';
     this.minAmount = null;
@@ -110,16 +158,17 @@ export class TransactionHistory implements OnInit {
 
     this.filteredTransactions = [...this.allTransactions];
     this.page = 1;
+    this.totalPages = this.calculateTotalPages();
 
     this.updatePagedData();
   }
 
-  // ✅ PAGINATION
+  // 🔹 Pagination
   updatePagedData() {
     const start = (this.page - 1) * this.limit;
-    const end = start + this.limit;
+    const paginated = this.filteredTransactions.slice(start, start + this.limit);
 
-    this.transactions = this.filteredTransactions.slice(start, end);
+    this.paginatedSubject.next(paginated);
   }
 
   nextPage() {
@@ -136,7 +185,7 @@ export class TransactionHistory implements OnInit {
     }
   }
 
-  get totalPages(): number {
+  calculateTotalPages(): number {
     return Math.ceil(this.filteredTransactions.length / this.limit) || 1;
   }
 }

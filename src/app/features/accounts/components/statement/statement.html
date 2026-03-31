@@ -1,36 +1,65 @@
-<div class="statement-container">
+<div class="container">
 
-  <h2>📄 Account Statement</h2>
+  <h2>📄 Statement Download</h2>
 
-  <div class="form-row">
+  <!-- 🔹 Loading -->
+  <div *ngIf="loading$ | async">Loading...</div>
 
-    <!-- Account -->
-    <select [(ngModel)]="selectedAccountId">
-      <option value="" disabled selected hidden>Select Account</option>
-      <option *ngFor="let acc of accounts" [value]="acc.id">
-        {{ acc.customerName }} - ****{{ acc.accountNumber?.slice(-4) }}
-      </option>
-    </select>
+  <!-- 🔹 Error -->
+  <div *ngIf="error$ | async as err" class="error">
+    {{ err }}
+  </div>
 
-    <!-- From Date -->
-    <input type="date" [(ngModel)]="fromDate">
+  <div *ngIf="(accounts$ | async) as accounts">
 
-    <!-- To Date -->
-    <input type="date" [(ngModel)]="toDate">
+    <!-- 🔥 ACCOUNT FIELD -->
+    <div class="form-group">
 
-    <!-- Format -->
-    <select [(ngModel)]="format">
-      <option value="" disabled selected hidden>Select Format</option>
-      <option value="pdf">PDF</option>
-      <option value="csv">CSV</option>
-    </select>
+      <label>Account</label>
+<select [(ngModel)]="selectedAccountId" [disabled]="!!accountId">
 
-    <!-- Download -->
-    <button (click)="downloadStatement()">Download</button>
+        <option [ngValue]="null">Select Account</option>
 
-    <button class="secondary-btn" (click)="resetForm()">
-  Reset
-</button>
+        <option *ngFor="let acc of accounts" [ngValue]="acc.id">
+          {{ acc.customerName }} - {{ acc.accountNumber }}
+        </option>
+
+      </select>
+
+    </div>
+
+    <!-- 🔥 DATE RANGE -->
+    <div class="form-group">
+      <label>From Date</label>
+      <input type="date" [(ngModel)]="fromDate">
+    </div>
+
+    <div class="form-group">
+      <label>To Date</label>
+      <input type="date" [(ngModel)]="toDate">
+    </div>
+
+    <!-- 🔥 FORMAT -->
+    <div class="form-group">
+      <label>Format</label>
+      <select [(ngModel)]="format">
+        <option value="">Select Format</option>
+        <option value="csv">CSV</option>
+        <option value="pdf">PDF</option>
+      </select>
+    </div>
+
+    <!-- 🔥 ACTION BUTTONS -->
+    <div class="btn-group">
+      <button class="primary-btn" (click)="downloadStatement(accounts)">
+        Download
+      </button>
+
+      <button class="secondary-btn" (click)="resetForm()">
+        Reset
+      </button>
+    </div>
+
   </div>
 
 </div>

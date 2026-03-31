@@ -1,65 +1,65 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AccountsService } from '../../services/accounts';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Account } from '../../Models/account.model';
+import { TransactionHistory } from '../transaction-history/transaction-history';
 
 @Component({
   selector: 'app-account-overview',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,TransactionHistory],
   templateUrl: './account-overview.html',
   styleUrl: './account-overview.scss',
 })
-export class AccountOverview implements OnInit {
+export class AccountOverview {
 
-  accounts: any[] = [];
-  paginatedAccounts: any[] = [];
+  private allAccounts: Account[] = [];
+
+  private paginatedSubject = new BehaviorSubject<Account[]>([]);
+  paginatedAccounts$ = this.paginatedSubject.asObservable();
+
+  loading$ = new BehaviorSubject<boolean>(true);
+  error$ = new BehaviorSubject<string>('');
 
   currentPage = 1;
   pageSize = 9;
   totalPages = 0;
 
-  loading = true;
-
   constructor(
     private service: AccountsService,
-    private router: Router,
-     private cdr: ChangeDetectorRef
-  ) {}
+    private router: Router
+  ) {
+    this.loadAccounts();
+  }
 
-  ngOnInit(): void {
-  this.service.getAccounts().subscribe({
-    next: (data) => {
-      console.log("FULL DATA:", data);
+  loadAccounts() {
+    this.loading$.next(true);
 
-      this.accounts = data || [];
+    this.service.getAccounts().subscribe({
+      next: (data) => {
+        this.allAccounts = data || [];
 
-      this.totalPages = Math.ceil(this.accounts.length / this.pageSize);
+        this.totalPages = Math.ceil(this.allAccounts.length / this.pageSize);
+        this.currentPage = 1;
 
-      this.currentPage = 1;
-      this.updatePage();
+        this.updatePage();
 
-      console.log("PAGE DATA:", this.paginatedAccounts);
-
-      this.loading = false;
-
-      this.cdr.detectChanges(); // 🔥 FIX
-    },
-    error: (err) => {
-      console.error(err);
-      this.loading = false;
-
-      this.cdr.detectChanges(); // 🔥 FIX
-    }
-  });
-}
+        this.loading$.next(false);
+      },
+      error: () => {
+        this.error$.next('Failed to load accounts');
+        this.loading$.next(false);
+      }
+    });
+  }
 
   updatePage() {
     const start = (this.currentPage - 1) * this.pageSize;
-    const end = start + this.pageSize;
+    const paginated = this.allAccounts.slice(start, start + this.pageSize);
 
-    this.paginatedAccounts = this.accounts.slice(start, end);
+    this.paginatedSubject.next(paginated);
   }
 
   nextPage() {
@@ -76,11 +76,7 @@ export class AccountOverview implements OnInit {
     }
   }
 
-  openAccount(acc: any) {
-    this.router.navigate(['/accounts', acc.id]);
-  }
-
-  goBack() {
-  this.router.navigate(['/']);
+  openAccount(acc: Account) {
+  this.router.navigate(['/dashboard/accounts/details', acc.id]);
 }
 }

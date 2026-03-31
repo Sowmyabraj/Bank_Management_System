@@ -9,4 +9,6 @@ export interface Transaction {
   description: string;
   mode: string;
   status: string;
+
+  transactions?: Transaction[];
 }

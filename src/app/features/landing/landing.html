@@ -1,71 +1,98 @@
 <div class="landing-container">
 
-  <!-- 🔹 Header -->
-  <header class="navbar">
-    <h2 class="logo">🏦 MyBank</h2>
+  <!-- 🔹 Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" routerLink="/">🏦 MyBank</a>
 
-    <nav>
-      <a routerLink="/">Home</a>
-      <a href="#">Features</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </nav>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <button routerLink="/login" class="login-btn">
-      Login
-    </button>
-  </header>
+      <div class="collapse navbar-collapse" id="navBar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
 
+        <button routerLink="/login" class="btn btn-primary ms-3">
+          Login
+        </button>
+      </div>
+    </div>
+  </nav>
 
   <!-- 🔹 Hero Section -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Smart Banking for Your Future</h1>
-      <p>
-        Manage your money securely, transfer instantly, and track your finances effortlessly.
-      </p>
+  <div class="hero-box">
+    <h1>Smart Banking for Your Future</h1>
+    <p>Secure, fast, and simple banking at your fingertips.</p>
 
-      <button routerLink="/login" class="primary-btn">
-        Get Started →
+    <button routerLink="/login" class="primary-btn">
+      Get Started →
+    </button>
+  </div>
+</section>
+
+  <!-- 🔹 Features -->
+  <section class="features py-5">
+    <div class="container">
+      <div class="row text-center">
+
+        <div class="col-md-4 mb-4">
+          <div class="card shadow h-100 p-3">
+            <h3>🔒</h3>
+            <h5 class="mt-2">Secure Banking</h5>
+            <p>Your data is protected with advanced encryption.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card shadow h-100 p-3">
+            <h3>⚡</h3>
+            <h5 class="mt-2">Fast Transactions</h5>
+            <p>Instant money transfers anytime.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+          <div class="card shadow h-100 p-3">
+            <h3>📱</h3>
+            <h5 class="mt-2">24/7 Access</h5>
+            <p>Bank from anywhere, anytime.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 About -->
+  <section class="about py-5 bg-light">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-3">Why Choose MyBank?</h2>
+      <p class="text-muted">
+        Experience seamless digital banking with real-time updates,
+        secure payments, and a user-friendly interface.
+      </p>
+    </div>
+  </section>
+
+  <!-- 🔹 CTA Section -->
+  <section class="cta text-center text-white py-5">
+    <div class="container">
+      <h2>Start Your Banking Journey Today</h2>
+      <button routerLink="/login" class="btn btn-warning mt-3">
+        Open Account
       </button>
     </div>
   </section>
 
-
-  <!-- 🔹 Features -->
-  <section class="features">
-
-    <div class="feature-card">
-      <h3>🔒 Secure Banking</h3>
-      <p>Your data is protected with top-level security.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>⚡ Fast Transactions</h3>
-      <p>Send and receive money instantly.</p>
-    </div>
-
-    <div class="feature-card">
-      <h3>📱 24/7 Access</h3>
-      <p>Access your account anytime, anywhere.</p>
-    </div>
-
-  </section>
-
-
-  <!-- 🔹 About -->
-  <section class="about">
-    <h2>Why Choose MyBank?</h2>
-    <p>
-      MyBank provides a seamless digital banking experience with secure transactions,
-      real-time updates, and an easy-to-use interface.
-    </p>
-  </section>
-
-
   <!-- 🔹 Footer -->
-  <footer class="footer">
-    <p>© 2026 MyBank. All rights reserved.</p>
+  <footer class="footer bg-dark text-white text-center py-3">
+    <p class="mb-0">© 2026 MyBank. All rights reserved.</p>
   </footer>
 
 </div>

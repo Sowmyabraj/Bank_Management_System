@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AccountsService } from '../../services/accounts';
-import { ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Account } from '../../Models/account.model';
+import { Transaction } from '../../Models/transaction.model';
 
 @Component({
   selector: 'app-statements',
@@ -13,90 +15,108 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class Statements implements OnInit {
 
-  accounts: any[] = [];
+@Input() accountId?: number; // 🔥 optional // ✅ from AccountDetails
 
-  selectedAccountId: string = '';
-  fromDate: string = '';
-  toDate: string = '';
-  format: string = '';
-  loading = false;
+  // 🔹 Streams
+  private accountsSubject = new BehaviorSubject<Account[]>([]);
+  accounts$ = this.accountsSubject.asObservable();
 
-  constructor(private service: AccountsService,
-    private cdr: ChangeDetectorRef 
-  ) {}
+  loading$ = new BehaviorSubject<boolean>(false);
+  error$ = new BehaviorSubject<string>('');
+
+  // 🔹 Form
+  selectedAccountId: number | null = null;
+  fromDate = '';
+  toDate = '';
+  format = '';
+
+  constructor(private service: AccountsService) {}
 
   ngOnInit(): void {
+    this.loadAccounts();
+  }
 
-  this.service.getAccounts().subscribe({
-    next: (data) => {
-      this.accounts = data;
+  // 🔹 Load Accounts
+  loadAccounts() {
+    this.loading$.next(true);
 
-      // 🔥 FORCE UI UPDATE
-      this.cdr.detectChanges();
-    },
-    error: () => {
-      this.cdr.detectChanges();
-    }
-  });
+    this.service.getAccounts().subscribe({
+      next: (data) => {
+        this.accountsSubject.next(data || []);
 
-}
-  downloadStatement() {
+        // ✅ ONLY when embedded
+        if (this.accountId) {
+          this.selectedAccountId = this.accountId;
+        }
 
-  // 🔥 ADD HERE (FIRST LINE INSIDE FUNCTION)
+        this.loading$.next(false);
+      },
+      error: () => {
+        this.error$.next('Failed to load accounts');
+        this.loading$.next(false);
+      }
+    });
+  }
+
+  downloadStatement(accounts: Account[]) {
+
   if (!this.selectedAccountId || !this.fromDate || !this.toDate || !this.format) {
     alert("Please fill all fields");
     return;
   }
 
-  this.loading = true;
+  this.loading$.next(true);
 
   this.service.getAllTransactions().subscribe({
-    next: (data: any[]) => {
+    next: (data: Transaction[]) => {
 
-      const filtered = data.filter(t =>
-        t.accountId == this.selectedAccountId &&
-        t.date >= this.fromDate &&
-        t.date <= this.toDate
-      );
+      const filtered = data.filter(t => {
+
+  const txnDate = t.date.split('T')[0]; // 🔥 remove time part
+
+  return (
+    Number(t.accountId) === Number(this.selectedAccountId) &&
+    txnDate >= this.fromDate &&
+    txnDate <= this.toDate
+  );
+});
 
       if (!filtered.length) {
         alert("No transactions found");
-        this.loading = false;
+        this.loading$.next(false);
         return;
       }
+
+      const account = accounts.find(a => a.id === this.selectedAccountId);
 
       if (this.format === 'csv') {
         this.downloadCSV(filtered);
       } else {
-        this.downloadPDF(filtered);
+        this.downloadPDF(filtered, account);
       }
 
-      this.loading = false;
+      this.loading$.next(false);
     },
     error: () => {
-      this.loading = false;
-      alert("Error generating statement");
+      this.error$.next('Error generating statement');
+      this.loading$.next(false);
     }
   });
 }
-
-  // ✅ CSV DOWNLOAD
-  downloadCSV(data: any[]) {
-
-    const header = ['Date', 'Type', 'Amount', 'Balance', 'Mode'];
+  // 🔹 CSV
+  downloadCSV(data: Transaction[]) {
+    const header = ['Date', 'Type', 'Amount', 'Balance'];
 
     const rows = data.map(t => [
       t.date,
       t.type,
       t.amount,
-      t.balanceAfter,
-      t.mode
+      t.balanceAfter
     ]);
 
-    const csvContent =
-      [header, ...rows].map(e => e.join(',')).join('\n');
+    const csv = [header, ...rows].map(r => r.join(',')).join('\n');
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csv], { type: 'text/csv' });
 
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
@@ -104,114 +124,48 @@ export class Statements implements OnInit {
     link.click();
   }
 
-  // ✅ PDF DOWNLOAD
-  downloadPDF(data: any[]) {
+  // 🔹 PDF
+  downloadPDF(data: Transaction[], account?: Account) {
 
-  const account = this.accounts.find(a => a.id == this.selectedAccountId);
+    const rows = data.map(t => `
+      <tr>
+        <td>${t.date}</td>
+        <td>${t.type}</td>
+        <td>₹ ${t.amount}</td>
+        <td>₹ ${t.balanceAfter}</td>
+      </tr>
+    `).join('');
 
-  const rows = data.map(t => `
-    <tr>
-      <td>${t.date}</td>
-      <td>${t.description || 'Transaction'}</td>
-      <td>${t.type}</td>
-      <td>₹ ${t.amount}</td>
-      <td>₹ ${t.balanceAfter}</td>
-      <td>${t.mode}</td>
-    </tr>
-  `).join('');
+    const html = `
+      <html>
+        <body style="font-family: Arial; padding:20px;">
+          <h2 style="text-align:center;">MyBank Pvt Ltd</h2>
+          <h3 style="text-align:center;">Account Statement</h3>
 
-  const html = `
-    <html>
-      <head>
-        <title>Account Statement</title>
-        <style>
-          body {
-            font-family: Arial;
-            padding: 20px;
-          }
+          <p><b>Name:</b> ${account?.customerName}</p>
+          <p><b>Account:</b> ${account?.accountNumber}</p>
 
-          h2, h3 {
-            text-align: center;
-            margin: 5px;
-          }
+          <table border="1" width="100%">
+            <tr>
+              <th>Date</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Balance</th>
+            </tr>
+            ${rows}
+          </table>
+        </body>
+      </html>
+    `;
 
-          .bank {
-            font-size: 20px;
-            font-weight: bold;
-          }
+    const win = window.open('', '', 'width=900,height=700');
+    win?.document.write(html);
+    win?.document.close();
+    win?.print();
+  }
 
-          .details {
-            margin-top: 20px;
-            margin-bottom: 20px;
-          }
-
-          .details p {
-            margin: 3px 0;
-          }
-
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-          }
-
-          th {
-            background: #0a2540;
-            color: white;
-            padding: 10px;
-          }
-
-          td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-          }
-
-          tr:nth-child(even) {
-            background: #f5f5f5;
-          }
-        </style>
-      </head>
-
-      <body>
-
-        <h2 class="bank">MyBank Pvt Ltd</h2>
-        <h3>Account Statement</h3>
-
-        <div class="details">
-          <p><strong>Customer Name:</strong> ${account?.customerName}</p>
-          <p><strong>Account Number:</strong> ${account?.accountNumber}</p>
-          <p><strong>Account Type:</strong> ${account?.type}</p>
-          <p><strong>From:</strong> ${this.fromDate} 
-             <strong>To:</strong> ${this.toDate}</p>
-        </div>
-
-        <table>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Balance</th>
-            <th>Mode</th>
-          </tr>
-
-          ${rows}
-
-        </table>
-
-      </body>
-    </html>
-  `;
-
-  const win = window.open('', '', 'width=1000,height=800');
-  win?.document.write(html);
-  win?.document.close();
-  win?.print();
-}
-
-resetForm() {
-  this.selectedAccountId = '';
+  resetForm() {
+  this.selectedAccountId = this.accountId || null; // ✅ keep selected account if embedded
   this.fromDate = '';
   this.toDate = '';
   this.format = '';

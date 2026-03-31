@@ -1,66 +1,52 @@
+<!-- 🔹 MAIN CONTENT -->
+<div class="accounts-wrapper">
 
-<h2 class="title">💳 Your Accounts</h2>
-<p class="subtitle">
-  View and manage your accounts
-</p>
+  <h2 class="title">💳 Your Accounts</h2>
+  <p class="subtitle">View and manage your accounts</p>
 
-<!-- 🔹 Loading -->
-<div *ngIf="loading">Loading accounts...</div>
+  <!-- 🔥 Loading -->
+  <div *ngIf="loading$ | async" class="info-text">Loading accounts...</div>
 
-<!-- 🔹 Data -->
-<div *ngIf="!loading">
+  <!-- 🔥 Error -->
+  <div *ngIf="error$ | async as err" class="error-text">{{ err }}</div>
 
-  <!-- 🔹 Empty State -->
-  <div *ngIf="paginatedAccounts.length === 0">
-    No accounts found
-  </div>
+  <!-- 🔥 Data -->
+  <div *ngIf="(paginatedAccounts$ | async) as accounts">
 
-  <!-- 🔹 Account Cards -->
-  <div class="account-container">
-
-    <div 
-      class="account-card"
-      *ngFor="let acc of paginatedAccounts"
-      (click)="openAccount(acc)"
-    >
-
-      <!-- 🔹 Top Row -->
-      <div class="acc-header">
-        <div class="acc-type">
-          💼 {{ acc.type }} Account
-        </div>
-
-      </div>
-      <!-- 🔹 Customer Name -->
-      <div class="acc-name">
-        {{ acc.customerName }}
-      </div>
-
-      <div class="acc-balance">
-  ₹ {{ acc.balance | number:'1.2-2' }}
-</div>
-
-      <!-- 🔹 Branch -->
-      <div class="acc-branch">
-        🏦 {{ acc.branch }} Branch
-      </div>
-
+    <!-- Empty -->
+    <div *ngIf="accounts.length === 0" class="info-text">
+      No accounts found
     </div>
 
-  </div>
+    <!-- 🔹 Cards -->
+    <div class="account-container">
+      <div 
+        class="account-card"
+        *ngFor="let acc of accounts"
+      >
+        <div>💼 {{ acc.type }}</div>
+        <div>{{ acc.customerName }}</div>
+        <div>₹ {{ acc.balance }}</div>
+        <div>{{ acc.branch }}</div>
 
-  <!-- 🔹 Pagination -->
-  <div class="pagination">
+        <button class="details-btn" (click)="openAccount(acc)">
+          View Details
+        </button>
+      </div>
+    </div>
 
-    <button (click)="prevPage()" [disabled]="currentPage === 1">
-      ⬅ Prev
-    </button>
+    <!-- 🔹 Pagination -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">
+        ⬅ Prev
+      </button>
 
-    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
 
-    <button (click)="nextPage()" [disabled]="currentPage === totalPages">
-      Next ➡
-    </button>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+        Next ➡
+      </button>
+    </div>
 
   </div>
 

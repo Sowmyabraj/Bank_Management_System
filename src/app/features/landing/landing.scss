@@ -1,119 +1,152 @@
+/* 🔹 Global */
 .landing-container {
   font-family: "Segoe UI", Arial, sans-serif;
-  color: #2c2c2c;
-  background: #eef2f7; /* main page light color */
+  background: #e8eefc; /* soft blue (NOT white) */
+  color: #1e293b;
 }
 
 /* 🔹 Navbar */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: #2a4d69; /* dark soft blue */
-  color: white;
+  background: #dbe4ff !important; /* light blue instead of white */
+  border-bottom: 1px solid #c7d2fe;
+}
+.navbar .navbar-brand {
+  color: #000000 !important; /* black */
+  font-weight: 700;
 }
 
-.logo {
-  font-weight: 600;
+.navbar .navbar-brand:hover {
+  color: #000000 !important; /* keep it black on hover */
 }
 
-.navbar nav a {
-  margin: 0 12px;
-  text-decoration: none;
-  color: #e0e6ed;
+.navbar .nav-link {
+  color: #334155 !important;
   font-size: 14px;
+  font-weight: 500;
 }
 
-.navbar nav a:hover {
-  color: #ffffff;
+.navbar .nav-link:hover {
+  color: #2563eb !important;
 }
 
-/* 🔹 Login Button */
-.login-btn {
-  padding: 6px 14px;
-  border: 1px solid #ffffff;
-  background: transparent;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.login-btn:hover {
-  background: rgba(255,255,255,0.1);
+.navbar .btn-primary {
+  background: #2563eb;
+  border: none;
+  border-radius: 6px;
 }
 
 /* 🔹 Hero Section */
 .hero {
-  padding: 80px 20px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+}
+
+/* 🔹 Hero Card */
+.hero-box {
+  background: #c7d2fe; /* soft purple-blue (NOT white) */
+  padding: 40px 60px;
+  border-radius: 14px;
   text-align: center;
-  background: linear-gradient(to right, #3a6073, #4f83a1);
-  color: white;
+
+  border: 1px solid #a5b4fc;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
-.hero h1 {
-  font-size: 30px;
-  margin-bottom: 10px;
+.hero-box h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1e293b;
 }
 
-.hero p {
-  font-size: 14px;
-  opacity: 0.9;
+.hero-box p {
+  margin-top: 10px;
+  color: #475569;
 }
 
-/* 🔹 Button */
+/* 🔥 Button */
 .primary-btn {
   margin-top: 20px;
-  padding: 10px 20px;
-  background: white;
-  color: #2a4d69;
+  padding: 12px 26px;
+
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: white;
+
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* 🔹 Features */
-.features {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 50px 20px;
-  background: #eef2f7; /* different from cards */
-}
-
-.feature-card {
-  width: 220px;
-  padding: 20px;
-  text-align: center;
-  background: #ffffff;
   border-radius: 8px;
-  border: 1px solid #d6dbe1;
-  transition: 0.2s;
+  cursor: pointer;
+  font-weight: 600;
+
+  transition: 0.3s;
 }
 
-.feature-card:hover {
-  transform: translateY(-3px);
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.3);
 }
 
-.feature-card h3 {
-  color: #2a4d69;
+/* 🔹 Features Section */
+.features {
+  background: #e8eefc;
 }
 
-/* 🔹 About */
+/* Cards */
+.card {
+  background: #dbeafe; /* soft card color */
+  border: 1px solid #bfdbfe;
+  color: #1e293b;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #2563eb;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  color: #2563eb;
+}
+
+/* 🔹 About Section */
 .about {
-  padding: 50px 20px;
-  text-align: center;
-  background: #dfe7ef; /* visible section color */
+  background: #dbe4ff !important;
 }
 
 .about h2 {
-  color: #2a4d69;
+  color: #1e293b;
+}
+
+.about p {
+  color: #475569 !important;
+}
+
+/* 🔹 CTA Section */
+.cta {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+}
+
+.cta .btn-warning {
+  background: #c7d2fe; /* NOT white */
+  border: none;
+  color: #1e293b;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 6px;
+}
+
+.cta .btn-warning:hover {
+  background: #a5b4fc;
 }
 
 /* 🔹 Footer */
 .footer {
-  text-align: center;
-  padding: 15px;
-  background: #2a4d69;
-  color: white;
+  background: #dbe4ff !important;
+  border-top: 1px solid #c7d2fe;
+  color: #475569;
 }

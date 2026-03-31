@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Account } from '../Models/account.model';
+import { Transaction } from '../Models/transaction.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,19 @@ export class AccountsService {
 
   constructor(private http: HttpClient) {}
 
-  // ✅ Get all accounts
-  getAccounts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/accounts`);
-  }
+  getAccounts(): Observable<Account[]> {
+  return this.http.get<Account[]>(`${this.baseUrl}/accounts`);
+}
 
-  // ✅ Get single account
-  getAccount(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/accounts/${id}`);
-  }
+getAccount(id: number): Observable<Account> {
+  return this.http.get<Account>(`${this.baseUrl}/accounts/${id}`);
+}
+
+getTransactionsByAccount(accountId: number): Observable<Transaction[]> {
+  return this.http.get<Transaction[]>(
+    `${this.baseUrl}/transactions?accountId=${accountId}`
+  );
+}
 
   // ✅ Get all transactions
  getAllTransactions(params?: any): Observable<any[]> {
@@ -28,13 +33,6 @@ export class AccountsService {
     params: params || {}
   });
 }
-
-  // ✅ Get transactions by account
-  getTransactionsByAccount(accountId: number): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${this.baseUrl}/transactions?accountId=${accountId}`
-    );
-  }
 
   calculateTotalBalance(accounts: Account[]): number {
     return accounts.reduce(

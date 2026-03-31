@@ -3,103 +3,141 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountsService } from '../../services/accounts';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectorRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { Statements } from '../statement/statement';
+import { Account } from '../../Models/account.model';
+import { Transaction } from '../../Models/transaction.model';
+import { TransactionHistory } from "../transaction-history/transaction-history";
 
 @Component({
   selector: 'app-account-details',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, Statements, TransactionHistory],
   templateUrl: './account-details.html',
   styleUrl: './account-details.scss'
 })
 export class AccountDetails implements OnInit {
 
-  account: any = null;
-  transactions: any[] = [];
-  loading = true;
+  // 🔹 Streams
+  private accountSubject = new BehaviorSubject<Account | null>(null);
+  account$ = this.accountSubject.asObservable();
 
-  // 🔥 Tabs
+  private paginatedSubject = new BehaviorSubject<Transaction[]>([]);
+  pagedTransactions$ = this.paginatedSubject.asObservable();
+
+  loading$ = new BehaviorSubject<boolean>(true);
+  error$ = new BehaviorSubject<string>('');
+
+  // 🔹 UI
   viewMode: 'none' | 'transactions' | 'statement' = 'none';
 
-  // 🔥 Filters
+  // 🔹 Filters
   type = '';
   minAmount: number | null = null;
   maxAmount: number | null = null;
-  fromDate: string = '';
-  toDate: string = '';
+  fromDate = '';
+  toDate = '';
 
-  // 🔥 Pagination
+  // 🔹 Data
+  private allTransactions: Transaction[] = [];
+  filteredTransactions: Transaction[] = [];
+
+  // 🔹 Pagination
   page = 1;
   limit = 5;
-
-  filteredTransactions: any[] = [];
-  pagedTransactions: any[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private service: AccountsService,
-    private router: Router,
-     private cdr: ChangeDetectorRef 
+    private router: Router
   ) {}
 
+  // ✅ IMPORTANT FIX
   ngOnInit(): void {
-  const id = Number(this.route.snapshot.paramMap.get('id'));
-
-  this.loading = true;
-
-  this.service.getAccount(id).subscribe({
-    next: (data) => {
-      console.log("Account API:", data); // 🔍 debug
-      this.account = data;
-      this.checkLoading();
-    },
-    error: (err) => {
-      console.error("Account error:", err);
-      this.loading = false;
-      this.cdr.detectChanges();
-    }
-  });
-
-  this.service.getTransactionsByAccount(id).subscribe({
-    next: (data) => {
-      console.log("Transactions API:", data); // 🔍 debug
-      this.transactions = data;
-      this.applyFilters();
-      this.checkLoading();
-    },
-    error: (err) => {
-      console.error("Txn error:", err);
-      this.loading = false;
-      this.cdr.detectChanges();
-    }
-  });
-}
-checkLoading() {
-  if (this.account && this.transactions) {
-    this.loading = false;
-    this.cdr.detectChanges(); // 🔥 CRITICAL FIX
+    this.loadData();
   }
-}
 
-  // 🔹 Filter Logic
+  loadData() {
+    this.loading$.next(true);
+
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    if (!id) {
+      this.error$.next('Invalid account ID');
+      this.loading$.next(false);
+      return;
+    }
+
+    // 🔹 Account
+    this.service.getAccount(id).subscribe({
+      next: (account) => {
+        this.accountSubject.next(account);
+      },
+      error: () => {
+        this.error$.next('Failed to load account');
+        this.loading$.next(false);
+      }
+    });
+
+    // 🔹 Transactions
+    this.service.getTransactionsByAccount(id).subscribe({
+      next: (transactions) => {
+
+        console.log("DATA RECEIVED:", transactions);
+
+        this.allTransactions = transactions || [];
+
+        // 🔥 IMPORTANT: apply filters AFTER data
+        this.applyFilters();
+
+        this.loading$.next(false);
+      },
+      error: () => {
+        this.error$.next('Failed to load transactions');
+        this.loading$.next(false);
+      }
+    });
+  }
+
   applyFilters() {
-    let filtered = [...this.transactions];
+  let filtered = [...this.allTransactions];
 
-    if (this.type) filtered = filtered.filter(t => t.type === this.type);
-    if (this.minAmount != null) filtered = filtered.filter(t => t.amount >= this.minAmount!);
-    if (this.maxAmount != null) filtered = filtered.filter(t => t.amount <= this.maxAmount!);
-    if (this.fromDate) filtered = filtered.filter(t => t.date >= this.fromDate);
-    if (this.toDate) filtered = filtered.filter(t => t.date <= this.toDate);
-
-    this.filteredTransactions = filtered;
-    this.page = 1;
-    this.updatePagedData();
+  if (this.type) {
+    filtered = filtered.filter(t => t.type === this.type);
   }
+
+  if (this.minAmount !== null) {
+    const min = this.minAmount;
+    filtered = filtered.filter(t => t.amount >= min);
+  }
+
+  if (this.maxAmount !== null) {
+    const max = this.maxAmount;
+    filtered = filtered.filter(t => t.amount <= max);
+  }
+
+  if (this.fromDate) {
+    const from = this.fromDate;
+    filtered = filtered.filter(t => t.date >= from);
+  }
+
+  if (this.toDate) {
+    const to = this.toDate;
+    filtered = filtered.filter(t => t.date <= to);
+  }
+
+  this.filteredTransactions = filtered;
+  this.page = 1;
+
+  this.updatePagedData();
+}
 
   // 🔹 Pagination
   updatePagedData() {
     const start = (this.page - 1) * this.limit;
-    this.pagedTransactions = this.filteredTransactions.slice(start, start + this.limit);
+    const data = this.filteredTransactions.slice(start, start + this.limit);
+
+    this.paginatedSubject.next(data); // 🔥 CRITICAL FIX
   }
 
   nextPage() {
@@ -129,114 +167,32 @@ checkLoading() {
     this.viewMode = 'statement';
   }
 
-  // 🔹 Statement Download
+  // 🔹 Downloads
   downloadCSV() {
-  const bankName = 'ABC Bank Pvt Ltd';
-  const title = 'Account Statement';
+    const header = ['Date', 'Type', 'Amount', 'Balance'];
 
-  const accountInfo = [
-    `Customer Name:,${this.account.customerName}`,
-    `Account Number:,${this.account.accountNumber}`,
-    `Account Type:,${this.account.type}`,
-    `From Date:,${this.fromDate || '-'}`,
-    `To Date:,${this.toDate || '-'}`,
-    ''
-  ];
+    const rows = this.filteredTransactions.map(t => [
+      t.date,
+      t.type,
+      t.amount,
+      t.balanceAfter
+    ]);
 
-  const header = ['Date', 'Description', 'Type', 'Amount', 'Balance', 'Mode'];
+    const csv = [header, ...rows].map(r => r.join(',')).join('\n');
 
-  const rows = this.filteredTransactions.map(t => [
-    t.date,
-    t.description || 'Transaction',
-    t.type,
-    t.amount,
-    t.balanceAfter,
-    t.mode
-  ]);
+    const blob = new Blob([csv], { type: 'text/csv' });
 
-  const csvContent = [
-    [bankName],
-    [title],
-    [],
-    ...accountInfo.map(row => row.split(',')),
-    header,
-    ...rows
-  ]
-    .map(e => e.join(','))
-    .join('\n');
-
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = `${this.account.accountNumber}_statement.csv`;
-  link.click();
-}
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'statement.csv';
+    link.click();
+  }
 
   downloadPDF() {
-  const content = `
-    <html>
-    <head>
-      <title>Bank Statement</title>
-      <style>
-        body { font-family: Arial; padding: 20px; }
-        h2, h3 { text-align: center; margin: 5px; }
-        .details { margin-bottom: 20px; }
-        .details p { margin: 2px 0; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #000; padding: 8px; text-align: center; }
-        th { background-color: #f2f2f2; }
-      </style>
-    </head>
-    <body>
-
-      <h2>ABC Bank Pvt Ltd</h2>
-      <h3>Account Statement</h3>
-
-      <div class="details">
-        <p><strong>Customer Name:</strong> ${this.account.customerName}</p>
-        <p><strong>Account Number:</strong> ${this.account.accountNumber}</p>
-        <p><strong>Account Type:</strong> ${this.account.type}</p>
-        <p><strong>From:</strong> ${this.fromDate || '-'} 
-           <strong>To:</strong> ${this.toDate || '-'}</p>
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Amount</th>
-            <th>Balance</th>
-            <th>Mode</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${this.filteredTransactions.map(t => `
-            <tr>
-              <td>${t.date}</td>
-              <td>${t.description || 'Transaction'}</td>
-              <td>${t.type}</td>
-              <td>${t.amount}</td>
-              <td>${t.balanceAfter}</td>
-              <td>${t.mode}</td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-
-    </body>
-    </html>
-  `;
-
-  const win = window.open('', '', 'width=900,height=700');
-  win!.document.write(content);
-  win!.document.close();
-  win!.print();
-}
+    window.print();
+  }
 
   goBack() {
-    this.router.navigate(['/accounts']);
+    this.router.navigate(['/dashboard/accounts']);
   }
 }

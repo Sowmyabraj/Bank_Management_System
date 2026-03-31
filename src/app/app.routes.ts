@@ -24,12 +24,13 @@ export const routes: Routes = [
     children: [
 
   {
-    path: 'accounts',
-    loadChildren: () =>
-      import('./features/accounts/accounts-routing-module')
-        .then(m => m.ACCOUNTS_ROUTES)
-  },
+  path: 'accounts',
+  loadChildren: () =>
+    import('./features/accounts/accounts-routing-module')
+      .then(m => m.ACCOUNTS_ROUTES),
 
+  runGuardsAndResolvers: 'always'   // ✅ ADD THIS
+},
   {
     path: 'transactions',
     loadComponent: () =>
