@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountsService } from '../../services/accounts';
+import { AccountsService } from '../../services/accounts.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Statements } from '../statement/statement';
-import { Account } from '../../Models/account.model';
-import { Transaction } from '../../Models/transaction.model';
-import { TransactionHistory } from "../transaction-history/transaction-history";
+import { Account } from '../../models/account.model';
+import { Transaction } from '../../models/transaction.model';
+import { RouterModule } from '@angular/router';
+import { TransactionHistory } from '../transaction-history/transaction-history';
 
 @Component({
   selector: 'app-account-details',
   standalone: true,
-  imports: [CommonModule, FormsModule, Statements, TransactionHistory],
+  imports: [CommonModule, FormsModule, Statements, TransactionHistory,RouterModule],
   templateUrl: './account-details.html',
   styleUrl: './account-details.scss'
 })
@@ -45,6 +46,11 @@ export class AccountDetails implements OnInit {
   // 🔹 Pagination
   page = 1;
   limit = 5;
+
+  totalCredits = 0;
+totalDebits = 0;
+
+
 
   constructor(
     private route: ActivatedRoute,
@@ -128,6 +134,7 @@ export class AccountDetails implements OnInit {
 
   this.filteredTransactions = filtered;
   this.page = 1;
+  this.calculateSummary();
 
   this.updatePagedData();
 }
@@ -193,6 +200,16 @@ export class AccountDetails implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['/dashboard/accounts']);
+    this.router.navigate(['/accounts']);
   }
+
+  calculateSummary() {
+  this.totalCredits = this.filteredTransactions
+    .filter(t => t.type?.toLowerCase() === 'credit')
+    .reduce((sum, t) => sum + t.amount, 0);
+
+  this.totalDebits = this.filteredTransactions
+    .filter(t => t.type?.toLowerCase() === 'debit')
+    .reduce((sum, t) => sum + t.amount, 0);
+}
 }

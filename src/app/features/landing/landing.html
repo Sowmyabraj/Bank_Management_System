@@ -1,98 +1,54 @@
 <div class="landing-container">
 
-  <!-- 🔹 Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <div class="container">
-      <a class="navbar-brand fw-bold" routerLink="/">🏦 MyBank</a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navBar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navBar">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Features</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-        </ul>
-
-        <button routerLink="/login" class="btn btn-primary ms-3">
-          Login
-        </button>
-      </div>
+  <!-- 🔷 Navbar -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <h3 class="logo">🏦 CoreBank</h3>
+      <button routerLink="/login" class="login-btn">Login</button>
     </div>
   </nav>
 
-  <!-- 🔹 Hero Section -->
-  <section class="hero">
-  <div class="hero-box">
-    <h1>Smart Banking for Your Future</h1>
-    <p>Secure, fast, and simple banking at your fingertips.</p>
+  <!-- 🔷 Main Section -->
+  <section class="main">
 
-    <button routerLink="/login" class="primary-btn">
-      Get Started →
-    </button>
-  </div>
-</section>
+    <!-- LEFT CARD -->
+    <div class="card-box">
+      <h3>Welcome Back</h3>
 
-  <!-- 🔹 Features -->
-  <section class="features py-5">
-    <div class="container">
-      <div class="row text-center">
-
-        <div class="col-md-4 mb-4">
-          <div class="card shadow h-100 p-3">
-            <h3>🔒</h3>
-            <h5 class="mt-2">Secure Banking</h5>
-            <p>Your data is protected with advanced encryption.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="card shadow h-100 p-3">
-            <h3>⚡</h3>
-            <h5 class="mt-2">Fast Transactions</h5>
-            <p>Instant money transfers anytime.</p>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="card shadow h-100 p-3">
-            <h3>📱</h3>
-            <h5 class="mt-2">24/7 Access</h5>
-            <p>Bank from anywhere, anytime.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 🔹 About -->
-  <section class="about py-5 bg-light">
-    <div class="container text-center">
-      <h2 class="fw-bold mb-3">Why Choose MyBank?</h2>
-      <p class="text-muted">
-        Experience seamless digital banking with real-time updates,
-        secure payments, and a user-friendly interface.
+      <p>
+        Please login to access your accounts, transactions and statements.
       </p>
-    </div>
-  </section>
 
-  <!-- 🔹 CTA Section -->
-  <section class="cta text-center text-white py-5">
-    <div class="container">
-      <h2>Start Your Banking Journey Today</h2>
-      <button routerLink="/login" class="btn btn-warning mt-3">
-        Open Account
+      <ul>
+        <li>✔ View account balances</li>
+        <li>✔ Track transactions</li>
+        <li>✔ Download statements</li>
+      </ul>
+
+      <button routerLink="/login" class="primary-btn">
+        Login to Continue
       </button>
     </div>
-  </section>
 
-  <!-- 🔹 Footer -->
-  <footer class="footer bg-dark text-white text-center py-3">
-    <p class="mb-0">© 2026 MyBank. All rights reserved.</p>
-  </footer>
+    <!-- RIGHT CARD -->
+    <div class="card-box light">
+      <h3>Secure Digital Banking</h3>
+
+      <p>
+        Your money is protected with industry-grade security and encryption.
+      </p>
+
+      <ul>
+        <li>🔒 Secure Transactions</li>
+        <li>⚡ Instant Transfers</li>
+        <li>📱 24/7 Access</li>
+      </ul>
+
+      <button routerLink="/login" class="secondary-btn">
+        Learn More
+      </button>
+    </div>
+
+  </section>
 
 </div>

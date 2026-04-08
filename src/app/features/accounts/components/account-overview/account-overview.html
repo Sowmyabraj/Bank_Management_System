@@ -1,41 +1,69 @@
-<!-- 🔹 MAIN CONTENT -->
 <div class="accounts-wrapper">
+
+  <!-- 🔷 TOP BAR -->
+  <div class="top-bar">
+    <button class="back-btn" (click)="goHome()">
+      ⬅ Back to Dashboard
+    </button>
+  </div>
 
   <h2 class="title">💳 Your Accounts</h2>
   <p class="subtitle">View and manage your accounts</p>
 
   <!-- 🔥 Loading -->
-  <div *ngIf="loading$ | async" class="info-text">Loading accounts...</div>
+  @if (loading$ | async) {
+    <div class="info-text">Loading accounts...</div>
+  }
 
   <!-- 🔥 Error -->
-  <div *ngIf="error$ | async as err" class="error-text">{{ err }}</div>
+  @if (error$ | async; as err) {
+    <div class="error-text">{{ err }}</div>
+  }
 
   <!-- 🔥 Data -->
-  <div *ngIf="(paginatedAccounts$ | async) as accounts">
+  @if (paginatedAccounts$ | async; as accounts) {
 
-    <!-- Empty -->
-    <div *ngIf="accounts.length === 0" class="info-text">
-      No accounts found
-    </div>
+    @if (accounts.length === 0) {
+      <div class="info-text">No accounts found</div>
+    }
 
-    <!-- 🔹 Cards -->
-    <div class="account-container">
-      <div 
-        class="account-card"
-        *ngFor="let acc of accounts"
-      >
-        <div>💼 {{ acc.type }}</div>
-        <div>{{ acc.customerName }}</div>
-        <div>₹ {{ acc.balance }}</div>
-        <div>{{ acc.branch }}</div>
+    @if (accounts.length > 0) {
 
-        <button class="details-btn" (click)="openAccount(acc)">
-          View Details
-        </button>
+      <!-- 🔷 ACCOUNT CARDS -->
+      <div class="account-container">
+
+  @for (acc of accounts; track acc.id) {
+
+    <div class="account-card">
+
+      <!-- 🔷 TYPE -->
+      <div class="acc-type">
+        🏦 {{ acc.type }}
       </div>
+
+      <!-- 🔷 ACCOUNT NUMBER BELOW -->
+      <div class="acc-number">
+        •••• {{ acc.accountNumber?.slice(-4) }}
+      </div>
+
+      <!-- 🔷 BALANCE -->
+      <div class="card-balance">
+        ₹ {{ acc.balance | number:'1.0-0' }}
+      </div>
+
+      <!-- 🔷 BUTTON -->
+      <button class="details-btn" (click)="openAccount(acc)">
+        View Details →
+      </button>
+
     </div>
 
-    <!-- 🔹 Pagination -->
+  }
+
+</div>
+    }
+
+    <!-- 🔷 Pagination -->
     <div class="pagination">
       <button (click)="prevPage()" [disabled]="currentPage === 1">
         ⬅ Prev
@@ -48,6 +76,6 @@
       </button>
     </div>
 
-  </div>
+  }
 
 </div>

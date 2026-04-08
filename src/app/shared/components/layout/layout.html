@@ -1,0 +1,53 @@
+<div class="dashboard">
+
+  <!-- 🔷 TOPBAR -->
+  <header class="topbar">
+
+    <h2 class="logo" routerLink="/dashboard">🏦 CoreBank</h2>
+
+    <div class="center">
+      Welcome, <strong>{{ customerName || 'Customer' }}</strong>
+    </div>
+
+    <div class="right">
+      <div class="balance" (click)="toggleDetails()">
+  ₹ {{ showDetails ? (totalBalance | number:'1.2-2') : '•••••' }}
+</div>
+
+      <div class="profile-icon" (click)="toggleProfile()">
+        {{ (customerName || 'C')[0] | uppercase }}
+      </div>
+    </div>
+
+  </header>
+
+  <!-- 🔥 PROFILE PANEL -->
+  <div class="profile-panel" [class.open]="showProfile">
+    <div class="profile-header">
+      <h3>👤 My Profile</h3>
+      <button (click)="toggleProfile()">✖</button>
+    </div>
+
+    <div class="profile-content">
+      <p><strong>Name:</strong> {{ customer?.name }}</p>
+      <p><strong>Email:</strong> {{ customer?.email }}</p>
+      <p><strong>Phone:</strong> {{ customer?.phone }}</p>
+      <p><strong>Address:</strong> {{ customer?.address }}</p>
+      <p><strong>DOB:</strong> {{ customer?.dob }}</p>
+      <p><strong>KYC:</strong> {{ customer?.kycStatus }}</p>
+      <p><strong>Status:</strong> {{ customer?.accountStatus }}</p>
+
+      <button class="logout-btn" (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+
+  @if (showProfile) {
+    <div class="overlay" (click)="toggleProfile()"></div>
+  }
+
+  <!-- 🔥 PAGE CONTENT -->
+  <section class="body">
+    <router-outlet></router-outlet>
+  </section>
+
+</div>

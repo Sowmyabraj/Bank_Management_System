@@ -1,158 +1,86 @@
-
-
-// /* 🔥 MAIN CONTAINER */
-// .container {
-//   max-width: 600px;
-//   margin: 40px auto;
-//   padding: 30px;
-
-//   background: #c7d2fe;
-//   border: 1px solid #8b9cf6;
-//   border-radius: 16px;
-
-//   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// }
-
-// /* 🔥 TITLE */
-// .container h2 {
-//   font-size: 22px;
-//   font-weight: 600;
-//   color: #1e293b;
-//   margin-bottom: 20px;
-// }
-
-// /* 🔥 FORM AREA */
-// .container > div {
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   gap: 12px;
-// }
-
-// /* 🔥 INPUTS & SELECT */
-// select,
-// input {
-//   width: 100%;
-//   padding: 10px 12px;
-//   border-radius: 10px;
-//   border: 1px solid #c7d2fe;
-//   background: #f8fafc;
-//   font-size: 14px;
-// }
-
-// select:focus,
-// input:focus {
-//   outline: none;
-//   border-color: #2563eb;
-// }
-
-// /* 🔥 BUTTON GROUP */
-// .container button {
-//   padding: 10px;
-//   border-radius: 10px;
-//   border: none;
-//   cursor: pointer;
-//   font-size: 14px;
-
-//   background: linear-gradient(135deg, #2563eb, #4f46e5);
-//   color: white;
-
-//   transition: 0.2s;
-// }
-
-// /* 🔥 HOVER */
-// .container button:hover {
-//   transform: translateY(-2px);
-//   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
-// }
-
-// /* 🔥 RESET BUTTON (SECOND BUTTON) */
-// .container button:last-child {
-//   background: #e0e7ff;
-//   color: #1e293b;
-// }
-
-// .container button:last-child:hover {
-//   background: #c7d2fe;
-// }
-
-// /* 🔥 LOADING / ERROR */
-// .container div[ng-reflect-ng-if] {
-//   text-align: center;
-//   font-size: 14px;
-//   color: #475569;
-// }
-
-
-
-/* 🔥 CONTAINER */
+/* 🔥 CONTAINER (MATCH TRANSACTIONS PAGE) */
 .container {
-  max-width: 500px;
-  margin: 40px auto;
+  max-width: 600px;
+  margin: 30px auto;
   padding: 25px;
 
-  background: #c7d2fe;
-  border: 1px solid #8b9cf6;
+  background: white;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
 
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* 🔥 TITLE */
 .container h2 {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #1e293b;
+  font-size: 22px;
+  font-weight: 600;
 }
 
 /* 🔥 FORM GROUP */
 .form-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 
 /* 🔥 LABEL */
 .form-group label {
-  font-size: 13px;
-  margin-bottom: 5px;
-  color: #475569;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #64748b;
+  letter-spacing: 0.3px;
 }
 
 /* 🔥 INPUT + SELECT */
 select,
 input {
-  padding: 10px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
   border: 1px solid #c7d2fe;
   background: #f8fafc;
   font-size: 14px;
+
+  transition: 0.2s;
 }
 
-/* 🔥 DISABLED STATE */
-select:disabled {
-  background: #e0e7ff;
-  color: #475569;
-  cursor: not-allowed;
-  opacity: 0.9;
+/* 🔥 FOCUS EFFECT */
+select:focus,
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.2);
 }
 
-/* 🔥 READONLY TEXT */
-.readonly-text {
-  font-size: 12px;
-  color: #64748b;
-  margin-top: 4px;
+/* 🔥 ACCOUNT READONLY FIELD (IMPORTANT) */
+.input-like {
+  width: 100%;
+  padding: 10px 12px;
+
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+
+  background: #f1f5f9;
+  color: #1e293b;
+
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* 🔥 BUTTON GROUP */
 .btn-group {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 /* 🔥 PRIMARY BUTTON */
@@ -164,8 +92,11 @@ select:disabled {
   color: white;
 
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: 500;
+
+  transition: 0.2s;
 }
 
 /* 🔥 SECONDARY BUTTON */
@@ -177,22 +108,34 @@ select:disabled {
   color: #1e293b;
 
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+
+  transition: 0.2s;
 }
 
-/* 🔥 HOVER */
+/* 🔥 HOVER EFFECTS */
 .primary-btn:hover {
+  transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
 }
 
 .secondary-btn:hover {
   background: #c7d2fe;
+  transform: translateY(-1px);
 }
 
 /* 🔥 ERROR */
 .error {
   color: #dc2626;
   text-align: center;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+/* 🔥 LOADING */
+.loading {
+  text-align: center;
+  color: #2563eb;
   margin-bottom: 10px;
 }

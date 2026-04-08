@@ -1,114 +1,66 @@
-<div class="dashboard">
+<div class="dashboard-content">
 
-  <!-- 🔷 TOPBAR -->
-  <header class="topbar">
-
-    <h2 class="logo" routerLink="/dashboard">🏦 MyBank</h2>
-
-    <div class="center">
-      Welcome, {{ customerName || 'Customer' }}
-    </div>
-
-    <div class="right">
-
-      <!-- Balance -->
-      <div class="balance" (click)="toggleDetails()">
-        ₹ {{ showDetails ? (totalBalance | number:'1.2-2') : '••••••' }}
-      </div>
-
-      <!-- Profile Icon -->
-      <div class="profile-wrapper">
-        <div class="profile-icon" (click)="toggleProfile()">
-          {{ customerName?.charAt(0) || 'C' }}
-        </div>
-      </div>
-
-    </div>
-
-  </header>
-
-  <!-- 🔷 MENU -->
+  <!-- MENU -->
   <nav class="menu">
     <a routerLink="/dashboard" routerLinkActive="active">🏠 Home</a>
-    <a routerLink="/dashboard/accounts" routerLinkActive="active">💳 Accounts</a>
-    <a routerLink="/dashboard/transactions" routerLinkActive="active">📊 Transactions</a>
-    <a routerLink="/dashboard/statements" routerLinkActive="active">📄 Statements</a>
+    <a routerLink="/accounts" routerLinkActive="active">💳 Accounts</a>
   </nav>
 
-  <!-- 🔥 PROFILE SIDE PANEL -->
-  <div class="profile-panel" [class.open]="showProfile">
-
-    <div class="profile-header">
-      <h3>👤 My Profile</h3>
-      <button (click)="toggleProfile()">✖</button>
+  <!-- CARDS -->
+  <section class="overview">
+    <div class="card">
+      <h3>Total Accounts</h3>
+      <p>{{ accounts?.length }}</p>
     </div>
 
-    <div class="profile-content">
-      <p><strong>Name:</strong> {{ customer?.name }}</p>
-      <p><strong>Email:</strong> {{ customer?.email }}</p>
-      <p><strong>Phone:</strong> {{ customer?.phone }}</p>
-      <p><strong>Address:</strong> {{ customer?.address }}</p>
-      <p><strong>DOB:</strong> {{ customer?.dob }}</p>
-      <p><strong>KYC:</strong> {{ customer?.kycStatus }}</p>
-      <p><strong>Status:</strong> {{ customer?.accountStatus }}</p>
-
-      <button class="logout-btn" (click)="onLogout()">Logout</button>
+    <div class="card">
+      <h3>Total Transactions</h3>
+      <p>{{ transactions?.length }}</p>
     </div>
+  </section>
 
-  </div>
+  <!-- MAIN -->
+  <section class="main-content">
 
-  <!-- 🔥 OVERLAY BACKGROUND -->
-  <div class="overlay" *ngIf="showProfile" (click)="toggleProfile()"></div>
+    <!-- CHART -->
+    <div class="chart-card">
+      <h3>Spending Overview</h3>
 
-  <!-- ✅ SHOW ONLY ON DASHBOARD HOME -->
-  <div *ngIf="isDashboardHome()">
-
-    <!-- 🔷 CARDS -->
-    <section class="overview">
-
-      <div class="card">
-        <h3>Total Balance</h3>
-        <p>₹ {{ totalBalance | number:'1.2-2' }}</p>
-      </div>
-
-      <div class="card">
-        <h3>Total Accounts</h3>
-        <p>{{ accounts?.length }}</p>
-      </div>
-
-      <div class="card">
-        <h3>Total Transactions</h3>
-        <p>{{ transactions?.length }}</p>
-      </div>
-
-      <div class="card">
-        <h3>Spent This Month</h3>
-        <p>₹ {{ monthlySpent | number:'1.2-2' }}</p>
-      </div>
-
-    </section>
-
-    <!-- 🔷 CHART -->
-    <section class="main-content">
-
-      <div class="chart-card">
-        <h3>Spending Overview</h3>
+      <div class="chart-wrapper">
         <canvas id="spendingChart"></canvas>
       </div>
+    </div>
 
-      <div class="side-card">
-        <h3>Quick Info</h3>
-        <p>Accounts: {{ accounts?.length }}</p>
-        <p>Transactions: {{ transactions?.length }}</p>
+    <!-- TRANSACTIONS -->
+    <div class="transactions-card">
+      <h3>Recent Transactions</h3>
+
+      <div class="txn-list">
+        @for (txn of transactions | slice:0:5; track txn.id) {
+
+        <div class="txn-item">
+
+          <!-- LEFT -->
+          <div class="txn-left">
+            <div class="txn-title">{{ txn.description }}</div>
+            <div class="txn-date">{{ txn.date | date:'mediumDate' }}</div>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="txn-amount"[class.credit]="txn.type?.toLowerCase() === 'credit'"
+[class.debit]="txn.type?.toLowerCase() === 'debit'">
+
+            {{ txn.type === 'debit' ? '-' : '+' }}
+            ₹ {{ txn.amount }}
+
+          </div>
+
+        </div>
+
+        }
       </div>
+    </div>
 
-    </section>
-
-  </div>
-
-  <!-- 🔷 PAGE CONTENT -->
-  <section class="body">
-    <router-outlet></router-outlet>
   </section>
 
 </div>

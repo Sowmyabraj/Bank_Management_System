@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { AccountsService } from '../../services/accounts';
+import { AccountsService } from '../../services/accounts.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { Account } from '../../Models/account.model';
-import { TransactionHistory } from '../transaction-history/transaction-history';
+import { Account } from '../../models/account.model';
 
 @Component({
   selector: 'app-account-overview',
   standalone: true,
-  imports: [CommonModule,TransactionHistory],
+  imports: [CommonModule],
   templateUrl: './account-overview.html',
   styleUrl: './account-overview.scss',
 })
@@ -76,7 +75,11 @@ export class AccountOverview {
     }
   }
 
-  openAccount(acc: Account) {
-  this.router.navigate(['/dashboard/accounts/details', acc.id]);
+openAccount(acc: Account) {
+  this.router.navigate(['/accounts', acc.id]);
 }
+goHome() {
+  this.router.navigate(['/dashboard']);
+}
+
 }

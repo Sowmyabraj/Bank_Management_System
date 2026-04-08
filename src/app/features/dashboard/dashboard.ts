@@ -1,22 +1,9 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  HostListener,
-  ChangeDetectorRef
-} from '@angular/core';
-
+import { Component, OnInit, OnDestroy, HostListener, ChangeDetectorRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  RouterModule,
-  Router,
-  NavigationEnd
-} from '@angular/router';
-
+import { RouterModule, Router,NavigationEnd} from '@angular/router';
 import { Subject, takeUntil, filter } from 'rxjs';
-
-import { AccountsService } from '../accounts/services/accounts';
-import { Auth } from '../../core/services/auth';
+import { AccountsService } from '../accounts/services/accounts.service';
+import { Auth } from '../../core/services/auth.service';
 
 import Chart from 'chart.js/auto';
 
@@ -85,17 +72,18 @@ export class Dashboard implements OnInit, OnDestroy {
   }
 
   // 👤 Profile toggle
-  toggleProfile() {
-    this.showProfile = !this.showProfile;
-  }
+ toggleProfile() {
+  this.showProfile = !this.showProfile;
+  console.log('Profile:', this.showProfile);
+}
 
   // ❌ Close dropdown
-  @HostListener('document:click', ['$event'])
-  onClickOutside(event: any) {
-    if (!event.target.closest('.profile-wrapper')) {
-      this.showProfile = false;
-    }
-  }
+  // @HostListener('document:click', ['$event'])
+  // onClickOutside(event: any) {
+  //   if (!event.target.closest('.profile-wrapper')) {
+  //     this.showProfile = false;
+  //   }
+  // }
 
   // 🔥 Load Accounts
   loadAccounts() {
@@ -149,17 +137,23 @@ export class Dashboard implements OnInit, OnDestroy {
 
   // 💸 Monthly Spending
   calculateMonthlySpent() {
-    const currentMonth = new Date().getMonth();
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
 
     this.monthlySpent = this.transactions
       .filter(t => {
         const date = new Date(t.date);
+
         return (
           date.getMonth() === currentMonth &&
-          t.type?.toLowerCase() === 'debit'
+          date.getFullYear() === currentYear &&
+          t.type?.toLowerCase() === 'debit'   // 👈 only debit
         );
       })
-      .reduce((sum, t) => sum + t.amount, 0);
+      .reduce((sum, t) => sum + Number(t.amount), 0);
+
+    console.log('Monthly spent:', this.monthlySpent);
   }
 
   // 📊 Chart

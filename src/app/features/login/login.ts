@@ -3,8 +3,8 @@ import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angula
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
-
-import { Auth } from '../../core/services/auth';
+import { ChangeDetectorRef } from '@angular/core';
+import { Auth } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,49 +24,56 @@ export class Login implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth: Auth
+    private auth: Auth,
+    private cdr: ChangeDetectorRef
+
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  login() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }
-
-    this.error = null;
-    this.isLoading = true;
-
-    const { email, password } = this.form.value;
-
-    this.auth.login(email, password)
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (res) => {
-          this.isLoading = false;
-
-          this.auth.saveToken(res.token);
-          this.router.navigate(['/dashboard']);
-        },
-        error: (err) => {
-          this.isLoading = false;
-
-          if (err.code === 'INVALID_CREDENTIALS') {
-            this.error = 'Invalid email or password.';
-          } else {
-            this.error = 'System unavailable. Please try again later.';
-          }
-        }
-      });
+ login(): void {
+  if (this.form.invalid || this.isLoading) {
+    this.form.markAllAsTouched();
+    return;
   }
 
-  ngOnDestroy() {
+  this.error = null;
+  this.isLoading = true;
+
+  const email = this.form.value.email?.trim();
+  const password = this.form.value.password?.trim();
+
+  this.auth.login(email, password)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: (res) => {
+        this.isLoading = false;
+
+        this.auth.saveToken(res.token);
+        this.cdr.detectChanges();
+        this.router.navigateByUrl('/dashboard');
+      },
+      error: (err) => {
+
+  this.isLoading = false;
+  this.error = err?.message || 'Login failed';
+  this.cdr.detectChanges();
+}
+    });
+}
+get email() {
+  return this.form.get('email');
+}
+
+get password() {
+  return this.form.get('password');
+}
+  ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }

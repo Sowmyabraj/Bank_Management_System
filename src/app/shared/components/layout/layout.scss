@@ -1,0 +1,135 @@
+/* 🔥 MAIN BACKGROUND */
+.dashboard {
+  background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+  min-height: 100vh;
+}
+
+/* 🔷 TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+/* 🔷 RIGHT SECTION */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 🔷 BALANCE */
+.balance {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 🔷 PROFILE ICON */
+.profile-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 🔥 PAGE CONTENT SPACING */
+.body {
+  padding: 20px 30px;
+}
+
+/* 🔥 PROFILE PANEL */
+.profile-panel {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+
+  background: white;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+
+  transition: 0.3s ease;
+  z-index: 1100;
+  padding: 20px;
+
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+
+/* OPEN */
+.profile-panel.open {
+  right: 0;
+}
+
+/* 🔥 OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(15, 23, 42, 0.25);
+  backdrop-filter: blur(4px);
+
+  z-index: 1000;
+}
+
+/* 🔥 PROFILE HEADER */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  background: #f8fafc;
+}
+
+.profile-header h3 {
+  margin: 0;
+}
+
+/* 🔥 PROFILE CONTENT */
+.profile-content {
+  padding: 16px;
+}
+
+.profile-content p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+/* 🔥 LOGOUT */
+.logout-btn {
+  width: 100%;
+  margin-top: 20px;
+
+  background: #ef4444;
+  color: white;
+  border: none;
+
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}

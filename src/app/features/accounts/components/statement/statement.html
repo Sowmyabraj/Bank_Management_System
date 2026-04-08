@@ -3,32 +3,38 @@
   <h2>📄 Statement Download</h2>
 
   <!-- 🔹 Loading -->
-  <div *ngIf="loading$ | async">Loading...</div>
+  @if (loading$ | async) {
+    <div>Loading...</div>
+  }
 
   <!-- 🔹 Error -->
-  <div *ngIf="error$ | async as err" class="error">
-    {{ err }}
-  </div>
-
-  <div *ngIf="(accounts$ | async) as accounts">
-
-    <!-- 🔥 ACCOUNT FIELD -->
-    <div class="form-group">
-
-      <label>Account</label>
-<select [(ngModel)]="selectedAccountId" [disabled]="!!accountId">
-
-        <option [ngValue]="null">Select Account</option>
-
-        <option *ngFor="let acc of accounts" [ngValue]="acc.id">
-          {{ acc.customerName }} - {{ acc.accountNumber }}
-        </option>
-
-      </select>
-
+  @if (error$ | async; as err) {
+    <div class="error">
+      {{ err }}
     </div>
+  }
 
-    <!-- 🔥 DATE RANGE -->
+  @if (accounts$ | async; as accounts) {
+
+    <!-- 🔥 ACCOUNT (READ ONLY ALWAYS) -->
+    <div class="form-group">
+  <label>Account</label>
+
+  @if (selectedAccountId !== null) {
+  <div class="input-like">
+    @for (acc of accounts; track acc.id) {
+      @if (+acc.id === selectedAccountId) {
+        <span>
+          {{ acc.customerName }} - {{ acc.accountNumber }}
+        </span>
+      }
+    }
+  </div>
+}
+
+</div>
+
+    <!-- 🔹 DATE RANGE -->
     <div class="form-group">
       <label>From Date</label>
       <input type="date" [(ngModel)]="fromDate">
@@ -39,7 +45,7 @@
       <input type="date" [(ngModel)]="toDate">
     </div>
 
-    <!-- 🔥 FORMAT -->
+    <!-- 🔹 FORMAT -->
     <div class="form-group">
       <label>Format</label>
       <select [(ngModel)]="format">
@@ -49,7 +55,7 @@
       </select>
     </div>
 
-    <!-- 🔥 ACTION BUTTONS -->
+    <!-- 🔹 BUTTONS -->
     <div class="btn-group">
       <button class="primary-btn" (click)="downloadStatement(accounts)">
         Download
@@ -60,6 +66,6 @@
       </button>
     </div>
 
-  </div>
+  }
 
 </div>
